@@ -11,10 +11,6 @@ import com.genix.wordmemoriser.Activities.ManageSets;
 import com.genix.wordmemoriser.Database.SetsDatabase;
 import com.genix.wordmemoriser.R;
 
-/**
- * Created by Genix on 2017-11-25.
- */
-
 public class AddSetPopUp extends Activity {
 
     private EditText getName_Text;

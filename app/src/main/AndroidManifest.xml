@@ -19,6 +19,8 @@
         <activity android:name=".Activities.ManageSets" />
         <activity android:name=".PopUps.AddSetPopUp"/>
         <activity android:name=".PopUps.EditSetPopUp"/>
+        <activity android:name=".PopUps.EditWordsPopUp"/>
+        <activity android:name=".PopUps.AddWordsPopUp"/>
     </application>
 
 </manifest>

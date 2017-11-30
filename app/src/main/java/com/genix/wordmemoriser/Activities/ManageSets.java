@@ -18,10 +18,6 @@ import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Genix on 2017-11-25.
- */
-
 public class ManageSets extends AppCompatActivity{
 
     SetsDatabase sdb;
@@ -33,11 +29,9 @@ public class ManageSets extends AppCompatActivity{
 
         sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);
-
         displayListView();
 
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String setName = adapterView.getItemAtPosition(i).toString();
 
@@ -82,4 +76,5 @@ public class ManageSets extends AppCompatActivity{
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }
