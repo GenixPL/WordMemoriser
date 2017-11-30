@@ -59,7 +59,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:onClick="save_But"
-            android:text="Save Set Name"
+            android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />

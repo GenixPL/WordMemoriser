@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import com.genix.wordmemoriser.Activities.ManageSets;
 
 public class WordsDatabase extends SQLiteOpenHelper {
 
@@ -16,14 +19,14 @@ public class WordsDatabase extends SQLiteOpenHelper {
 
     public WordsDatabase(Context context, String name){
         super(context, DATABASE_NAME, null, 1);
-        TABLE_NAME = name + "_table";
+        TABLE_NAME = name;
     }
 
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_1 + " TEXT, " + COL_2 + " TEXT)";
         db.execSQL(query);
-    } //possible errors
+    }
 
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String query = "DROP IF TABLE EXISTS " + TABLE_NAME;
@@ -46,19 +49,19 @@ public class WordsDatabase extends SQLiteOpenHelper {
             return true;
     }
 
-    public Cursor getData(){
+    public Cursor getDataFromTable(String tableName){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
 
         return data;
     }
 
-    public Cursor getItemId(String word1, String word2){
+    public Cursor getItemIdFromTable(String word1, String word2, String tableName){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "SELECT " + COL_0 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '"
+        String query = "SELECT " + COL_0 + " FROM " + tableName + " WHERE " + COL_1 + " = '"
                 + word1 + "' AND " + COL_2 + " = '" + word2 + "'";
         Cursor data = db.rawQuery(query, null);
 
@@ -86,6 +89,14 @@ public class WordsDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "DROP TABLE IF EXISTS " + tableName;
+        db.execSQL(query);
+    }
+
+    public void createTable(String tableName){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String query = "CREATE TABLE " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL_1 + " TEXT, " + COL_2 + " TEXT)";
         db.execSQL(query);
     }
 }

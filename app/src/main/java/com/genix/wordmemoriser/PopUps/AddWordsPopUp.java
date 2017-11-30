@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Activities.ManageSets;
 import com.genix.wordmemoriser.Database.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
@@ -16,6 +15,8 @@ public class AddWordsPopUp extends AppCompatActivity {
 
     EditText word1_editText, word2_editText;
     private String TABLE_NAME;
+    private String selectedSetName;
+    private int selectedID;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,9 @@ public class AddWordsPopUp extends AppCompatActivity {
         word2_editText = findViewById(R.id.word2_editText);
 
         Intent receivedIntent = getIntent();
-        TABLE_NAME = receivedIntent.getStringExtra("setName") + "_table";
+        selectedID = receivedIntent.getIntExtra("id", -1);
+        selectedSetName = receivedIntent.getStringExtra("setName");
+        TABLE_NAME = selectedSetName + "_table";
     }
 
 
@@ -40,7 +43,10 @@ public class AddWordsPopUp extends AppCompatActivity {
         else{
             wdb.addWords(word1, word2);
 
-            startActivity(new Intent(this, EditSetPopUp.class));
+            Intent editSetIntent = new Intent(AddWordsPopUp.this, EditSetPopUp.class);
+            editSetIntent.putExtra("setName", selectedSetName);
+            editSetIntent.putExtra("id", selectedID);
+            startActivity(editSetIntent);
             finish();
         }
     }

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.genix.wordmemoriser.Activities.ManageSets;
 import com.genix.wordmemoriser.Database.SetsDatabase;
+import com.genix.wordmemoriser.Database.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
 public class AddSetPopUp extends Activity {
@@ -32,6 +33,9 @@ public class AddSetPopUp extends Activity {
             toastMessage("You must enter a name");
         else {
             boolean worked = sdb.addSet(getName_Text.getText().toString());
+            String tableName = getName_Text.getText().toString() + "_table";
+            WordsDatabase wdb = new WordsDatabase(this, tableName);
+            wdb.createTable(tableName);
 
             if (worked)
                 toastMessage("New set has been added");

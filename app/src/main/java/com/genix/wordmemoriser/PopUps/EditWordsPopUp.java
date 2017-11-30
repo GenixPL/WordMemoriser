@@ -17,15 +17,17 @@ public class EditWordsPopUp extends AppCompatActivity{
     WordsDatabase wdb;
     private String selectedWord1;
     private String selectedWord2;
-    private int selectedID;
+    private int selectedWordID;
     private String selectedSetName;
+    private int selectedSetID;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_up_edit_words);
 
         Intent receivedIntent = getIntent();
-        selectedID = receivedIntent.getIntExtra("id", -1);
+        selectedWordID = receivedIntent.getIntExtra("wordID", -1);
+        selectedSetID = receivedIntent.getIntExtra("setID", -1);
         selectedSetName = receivedIntent.getStringExtra("setName");
         selectedWord1 = receivedIntent.getStringExtra("word1");
         selectedWord2 = receivedIntent.getStringExtra("word2");
@@ -47,25 +49,25 @@ public class EditWordsPopUp extends AppCompatActivity{
         if(item1.equals("") || item2.equals(""))
             toastMessage("You must enter both names");
         else {
-            wdb.updateWords(selectedID, selectedWord1, item1, selectedWord2, item2);
+            wdb.updateWords(selectedWordID, selectedWord1, item1, selectedWord2, item2);
 
             Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
-            editSetIntent.putExtra("id", selectedID);
+            editSetIntent.putExtra("id", selectedSetID);
             editSetIntent.putExtra("setName", selectedSetName);
-            startActivity(new Intent(this, EditSetPopUp.class));
+            startActivity(editSetIntent);
             finish();
         }
     }
 
     public void deleteWords_But(View view) {
-        wdb.deleteWords(selectedID, selectedWord1, selectedWord2);
+        wdb.deleteWords(selectedWordID, selectedWord1, selectedWord2);
         word1_editText.setText("");
         word2_editText.setText("");
 
         Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
-        editSetIntent.putExtra("id", selectedID);
+        editSetIntent.putExtra("id", selectedSetID);
         editSetIntent.putExtra("setName", selectedSetName);
-        startActivity(new Intent(this, EditSetPopUp.class));
+        startActivity(editSetIntent);
         finish();
     }
 
