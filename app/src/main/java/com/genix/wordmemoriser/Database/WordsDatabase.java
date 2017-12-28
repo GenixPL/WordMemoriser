@@ -11,7 +11,7 @@ import com.genix.wordmemoriser.Activities.ManageSets;
 
 public class WordsDatabase extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "words.db";;
+    private static final String DATABASE_NAME = "words.db";
     private String TABLE_NAME;
     private static final String COL_0 = "ID";
     private static final String COL_1 = "word1";
