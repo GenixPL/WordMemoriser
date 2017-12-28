@@ -16,12 +16,11 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
     }
 
-
     public void goToManageSets_But(View view) {
         startActivity(new Intent(this, ManageSets.class));
     }
 
     public void goToPlay_But(View view) {
-        Toast.makeText(this, "Still nothing here :(", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, Play.class));
     }
 }

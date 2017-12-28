@@ -12,25 +12,25 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.PopUps.AddSetPopUp;
+import com.genix.wordmemoriser.Game.Game;
 import com.genix.wordmemoriser.PopUps.EditSetPopUp;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
-public class ManageSets extends AppCompatActivity{
+public class Play extends AppCompatActivity{
 
     SetsDatabase sdb;
     private ListView sets_ListView;
 
-    protected void onCreate(Bundle savedInstanceSate){
-        super.onCreate(savedInstanceSate);
-        setContentView(R.layout.activity_manage_sets);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_play);
 
         sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);
         displayListView();
-
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String setName = adapterView.getItemAtPosition(i).toString();
@@ -43,7 +43,7 @@ public class ManageSets extends AppCompatActivity{
                 }
 
                 if(itemID > -1){
-                    Intent editSetIntent = new Intent(ManageSets.this, EditSetPopUp.class);
+                    Intent editSetIntent = new Intent(Play.this, Game.class);
                     editSetIntent.putExtra("id", itemID);
                     editSetIntent.putExtra("setName", setName);
                     startActivity(editSetIntent);
@@ -53,12 +53,6 @@ public class ManageSets extends AppCompatActivity{
                 }
             }
         });
-    }
-
-    public void addSet_But(View view){
-        startActivity(new Intent(this, AddSetPopUp.class));
-
-        finish();
     }
 
     private void displayListView(){

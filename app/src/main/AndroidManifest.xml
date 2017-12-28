@@ -21,6 +21,8 @@
         <activity android:name=".PopUps.EditSetPopUp"/>
         <activity android:name=".PopUps.EditWordsPopUp"/>
         <activity android:name=".PopUps.AddWordsPopUp"/>
+        <activity android:name=".Activities.Play"/>
+        <activity android:name=".Game.Game"/>
     </application>
 
 </manifest>
