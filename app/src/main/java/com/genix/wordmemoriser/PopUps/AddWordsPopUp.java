@@ -14,7 +14,6 @@ import com.genix.wordmemoriser.R;
 public class AddWordsPopUp extends AppCompatActivity {
 
     EditText word1_editText, word2_editText;
-    private String TABLE_NAME;
     private String selectedSetName;
     private int selectedID;
 
@@ -28,18 +27,17 @@ public class AddWordsPopUp extends AppCompatActivity {
         Intent receivedIntent = getIntent();
         selectedID = receivedIntent.getIntExtra("id", -1);
         selectedSetName = receivedIntent.getStringExtra("setName");
-        TABLE_NAME = selectedSetName + "_table";
     }
 
 
     public void saveWords_But(View view) {
-        WordsDatabase wdb = new WordsDatabase(this, TABLE_NAME);
+        WordsDatabase wdb = new WordsDatabase(this, selectedSetName);
 
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
 
         if(word1.equals("") || word2.equals(""))
-            toastMessage("You must enter both names");
+            toastMessage("You must enter both words");
         else{
             wdb.addWords(word1, word2);
 

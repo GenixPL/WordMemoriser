@@ -33,7 +33,7 @@ public class AddSetPopUp extends Activity {
             toastMessage("You must enter a name");
         else {
             boolean worked = sdb.addSet(getName_Text.getText().toString());
-            String tableName = getName_Text.getText().toString() + "_table";
+            String tableName = getName_Text.getText().toString();
             WordsDatabase wdb = new WordsDatabase(this, tableName);
             wdb.createTable(tableName);
 

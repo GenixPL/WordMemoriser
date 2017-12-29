@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/next_but"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="checkWords"/>
+        android:onClick="checkWords_But"/>
 
     <TextView
         android:id="@+id/word1_text"

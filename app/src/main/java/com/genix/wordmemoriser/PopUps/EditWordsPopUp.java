@@ -32,8 +32,7 @@ public class EditWordsPopUp extends AppCompatActivity{
         selectedWord1 = receivedIntent.getStringExtra("word1");
         selectedWord2 = receivedIntent.getStringExtra("word2");
 
-        String tableName = selectedSetName + "_table";
-        wdb = new WordsDatabase(this, tableName);
+        wdb = new WordsDatabase(this, selectedSetName);
 
         word1_editText = findViewById(R.id.word1_editText);
         word1_editText.setText(selectedWord1);

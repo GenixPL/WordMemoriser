@@ -36,8 +36,7 @@ public class EditSetPopUp extends AppCompatActivity{
         sdb = new SetsDatabase(this);
         setName_editText = findViewById(R.id.setName_editText);
 
-        final String tableName = selectedSetName + "_table";
-        wdb = new WordsDatabase(this, tableName);
+        wdb = new WordsDatabase(this, selectedSetName);
 
         Intent receivedIntent = getIntent();
         selectedID = receivedIntent.getIntExtra("id", -1);
@@ -53,7 +52,7 @@ public class EditSetPopUp extends AppCompatActivity{
                 String word1 = giveFirstWord(input);
                 String word2 = giveSecondWord(input);
 
-                Cursor data = wdb.getItemIdFromTable(word1, word2, selectedSetName + "_table");
+                Cursor data = wdb.getItemIdFromTable(word1, word2, selectedSetName);
                 int itemID = -1;
 
                 while(data.moveToNext()){
@@ -119,8 +118,7 @@ public class EditSetPopUp extends AppCompatActivity{
         sdb.deleteName(selectedID, selectedSetName);
         setName_editText.setText("");
 
-        String tableName = selectedSetName + "_table";
-        wdb.deleteTable(tableName);
+        wdb.deleteTable(selectedSetName);
 
         startActivity(new Intent(this, ManageSets.class));
         finish();
@@ -131,7 +129,7 @@ public class EditSetPopUp extends AppCompatActivity{
         if(item.equals(""))
             toastMessage("You must enter a name");
         else {
-            wdb.changeTableName(selectedSetName + "_table", item + "_table");
+            wdb.changeTableName(selectedSetName, item);
             sdb.updateName(item, selectedID, selectedSetName);
 
             startActivity(new Intent(this, ManageSets.class));
@@ -144,7 +142,7 @@ public class EditSetPopUp extends AppCompatActivity{
     }
 
     private void displayListView(){
-        Cursor data = wdb.getDataFromTable(selectedSetName + "_table");
+        Cursor data = wdb.getDataFromTable(selectedSetName);
         ArrayList<String> listedData = new ArrayList<>();
 
         while(data.moveToNext()){

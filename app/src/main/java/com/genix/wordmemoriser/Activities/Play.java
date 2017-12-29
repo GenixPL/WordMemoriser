@@ -47,7 +47,6 @@ public class Play extends AppCompatActivity{
                     editSetIntent.putExtra("id", itemID);
                     editSetIntent.putExtra("setName", setName);
                     startActivity(editSetIntent);
-                    finish();
                 } else {
                     toastMessage("No ID associated with that name");
                 }

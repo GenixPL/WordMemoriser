@@ -19,10 +19,11 @@ public class WordsDatabase extends SQLiteOpenHelper {
 
     public WordsDatabase(Context context, String name){
         super(context, DATABASE_NAME, null, 1);
-        TABLE_NAME = name;
+        TABLE_NAME = name + "_table";
     }
 
-    public void onCreate(SQLiteDatabase db) { //NOT SURE IF THIS IS NEEDED, BUT WORKS BETTER WITHOUT
+    public void onCreate(SQLiteDatabase db) {
+        //NOT SURE IF THIS IS NEEDED, BUT WORKS BETTER WITHOUT
 //        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
 //                + COL_1 + " TEXT, " + COL_2 + " TEXT)";
 //        db.execSQL(query);
@@ -50,6 +51,7 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public Cursor getDataFromTable(String tableName){
+        tableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "SELECT * FROM " + tableName;
@@ -59,6 +61,7 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public Cursor getItemIdFromTable(String word1, String word2, String tableName){
+        tableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "SELECT " + COL_0 + " FROM " + tableName + " WHERE " + COL_1 + " = '"
@@ -86,6 +89,7 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public void deleteTable(String tableName){
+        tableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "DROP TABLE IF EXISTS " + tableName;
@@ -93,6 +97,7 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public void createTable(String tableName){
+        tableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "CREATE TABLE " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -101,6 +106,8 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public void changeTableName(String oldTableName, String newTableName){
+        oldTableName += "_table";
+        newTableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "ALTER TABLE " + oldTableName + " RENAME TO " + newTableName;
