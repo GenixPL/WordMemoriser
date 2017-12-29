@@ -130,11 +130,13 @@ public class EditSetPopUp extends AppCompatActivity{
         String item = setName_editText.getText().toString();
         if(item.equals(""))
             toastMessage("You must enter a name");
-        else
+        else {
+            wdb.changeTableName(selectedSetName + "_table", item + "_table");
             sdb.updateName(item, selectedID, selectedSetName);
 
-        startActivity(new Intent(this, ManageSets.class));
-        finish();
+            startActivity(new Intent(this, ManageSets.class));
+            finish();
+        }
     }
 
     private void toastMessage(String message){

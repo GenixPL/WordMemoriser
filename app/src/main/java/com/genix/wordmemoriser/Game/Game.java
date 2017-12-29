@@ -51,21 +51,33 @@ public class Game extends AppCompatActivity {
         while (data.moveToNext()) {
             wordsArray.add(new Words(data.getString(1), data.getString(2)));
         }
-
         position = 0;
+        word1_Text.setText(wordsArray.get(position).getWord1());
+        word2_Text.setText("");
+    }
+
+    public void checkWords(View view) {
+        String properTranslation = wordsArray.get(position).getWord2();
+        String currentText = word2_Text.getText().toString();
+
+        if(currentText.equals(properTranslation))
+            toastMessage("GOOD! :)");
+        else
+            toastMessage("Bad :(");
+    }
+
+    public void goToNext(View view) {
+
+        if((position + 1) == wordsArray.size())
+            toastMessage("Now should be end");
+        else {
+            position++;
+            word1_Text.setText(wordsArray.get(position).getWord1());
+            word2_Text.setText("");
+        }
     }
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void checkWords(View view) {
-        ;
-    }
-
-    public void goToNext(View view) {
-        word1_Text.setText(wordsArray.get(position).word1);
-        word2_Text.setText(wordsArray.get(position).word2);
-        position++;
     }
 }

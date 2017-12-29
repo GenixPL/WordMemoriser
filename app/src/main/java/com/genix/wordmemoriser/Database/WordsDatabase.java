@@ -22,10 +22,10 @@ public class WordsDatabase extends SQLiteOpenHelper {
         TABLE_NAME = name;
     }
 
-    public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COL_1 + " TEXT, " + COL_2 + " TEXT)";
-        db.execSQL(query);
+    public void onCreate(SQLiteDatabase db) { //NOT SURE IF THIS IS NEEDED, BUT WORKS BETTER WITHOUT
+//        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + COL_1 + " TEXT, " + COL_2 + " TEXT)";
+//        db.execSQL(query);
     }
 
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
@@ -93,10 +93,17 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public void createTable(String tableName){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "CREATE TABLE " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_1 + " TEXT, " + COL_2 + " TEXT)";
+        db.execSQL(query);
+    }
+
+    public void changeTableName(String oldTableName, String newTableName){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "ALTER TABLE " + oldTableName + " RENAME TO " + newTableName;
         db.execSQL(query);
     }
 }
