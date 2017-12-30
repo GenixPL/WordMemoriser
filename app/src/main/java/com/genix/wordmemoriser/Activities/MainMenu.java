@@ -22,4 +22,8 @@ public class MainMenu extends AppCompatActivity {
     public void goToPlay_But(View view) {
         startActivity(new Intent(this, Play.class));
     }
+
+    public void goToSettings_But(View view) {
+        //startActivity(new Intent(this, Settings.class));
+    }
 }

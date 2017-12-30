@@ -10,19 +10,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Activities.MainMenu">
+        <activity
+            android:name=".Activities.MainMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ManageSets" />
-        <activity android:name=".PopUps.AddSetPopUp"/>
-        <activity android:name=".PopUps.EditSetPopUp"/>
-        <activity android:name=".PopUps.EditWordsPopUp"/>
-        <activity android:name=".PopUps.AddWordsPopUp"/>
-        <activity android:name=".Activities.Play"/>
-        <activity android:name=".Game.Game"/>
+        <activity
+            android:name=".Activities.ManageSets"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopUps.AddSetPopUp"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopUps.EditSetPopUp"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopUps.EditWordsPopUp"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopUps.AddWordsPopUp"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.Play"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Game.Game"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
