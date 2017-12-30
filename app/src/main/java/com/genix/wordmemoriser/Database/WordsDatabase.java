@@ -106,8 +106,8 @@ public class WordsDatabase extends SQLiteOpenHelper {
     }
 
     public void changeTableName(String oldTableName, String newTableName){
-        oldTableName += "_table";
-        newTableName += "_table";
+//        oldTableName += "_table"; //DOESN'T WORK WITH THAT
+//        newTableName += "_table";
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "ALTER TABLE " + oldTableName + " RENAME TO " + newTableName;

@@ -160,8 +160,9 @@ public class Game extends AppCompatActivity {
 
     boolean checkWords( String currentText){
         currentText = removeWhiteSpaces(currentText);
+        String properText = removeWhiteSpaces(wordsArray.get(positionOfWords).getWord2());
 
-        if(wordsArray.get(positionOfWords).getWord2().equals(currentText))
+        if(properText.equals(currentText))
             return true;
         else
             return false;

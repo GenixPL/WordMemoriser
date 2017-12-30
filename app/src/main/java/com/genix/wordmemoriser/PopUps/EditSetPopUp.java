@@ -129,7 +129,7 @@ public class EditSetPopUp extends AppCompatActivity{
         if(item.equals(""))
             toastMessage("You must enter a name");
         else {
-            wdb.changeTableName(selectedSetName, item);
+            wdb.changeTableName(selectedSetName + "_table", item + "_table"); //DON'T KNOW WHY THIS DOESN'T WORK WITHOUT "_TABLE"
             sdb.updateName(item, selectedID, selectedSetName);
 
             startActivity(new Intent(this, ManageSets.class));
