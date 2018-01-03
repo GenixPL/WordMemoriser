@@ -28,14 +28,17 @@ public class AddSetPopUp extends Activity {
 
         SetsDatabase sdb = new SetsDatabase(this);
 
-        String item = getName_Text.getText().toString();
-        if(item.equals(""))
+        String newSetName = getName_Text.getText().toString();
+        if(newSetName.equals(""))
             toastMessage("You must enter a name");
         else {
-            boolean worked = sdb.addSet(getName_Text.getText().toString());
-            String tableName = getName_Text.getText().toString();
-            WordsDatabase wdb = new WordsDatabase(this, tableName);
-            wdb.createTable(tableName);
+            if(hasWhiteSpaces(newSetName)) {
+                toastMessage("Sorry you can use only letters and numbers for now :(");
+                return;
+            }
+            boolean worked = sdb.addSet(newSetName);
+            WordsDatabase wdb = new WordsDatabase(this, newSetName);
+            wdb.createTable(newSetName);
 
             if (worked)
                 toastMessage("New set has been added");
@@ -45,6 +48,18 @@ public class AddSetPopUp extends Activity {
             startActivity(new Intent(this, ManageSets.class));
             finish();
         }
+    }
+
+    boolean hasWhiteSpaces(String string){
+
+        for (int i = 0; i < string.length(); i++){
+            char sign = string.charAt(i);
+
+            if(!Character.isDigit(sign) && !Character.isLetter(sign))
+                return true;
+        }
+
+        return false;
     }
 
     private void toastMessage(String message){
