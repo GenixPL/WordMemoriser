@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.genix.wordmemoriser.Database.SetsDatabase;
 import com.genix.wordmemoriser.Database.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
@@ -45,9 +46,13 @@ public class EditWordsPopUp extends AppCompatActivity{
         String item1 = word1_editText.getText().toString();
         String item2 = word2_editText.getText().toString();
 
-        if(item1.equals("") || item2.equals(""))
+        if(item1.equals("") || item2.equals("")) {
             toastMessage("You must enter both names");
-        else {
+
+        } else if(hasDash(item1)){
+            toastMessage("You can't use dashes in first word yet :(");
+
+        } else {
             wdb.updateWords(selectedWordID, selectedWord1, item1, selectedWord2, item2);
 
             Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
@@ -56,6 +61,14 @@ public class EditWordsPopUp extends AppCompatActivity{
             startActivity(editSetIntent);
             finish();
         }
+    }
+
+    boolean hasDash(String word){
+        for (int i = 0; i < word.length(); i++)
+            if(word.charAt(i) == '-')
+                return true;
+
+        return false;
     }
 
     public void deleteWords_But(View view) {

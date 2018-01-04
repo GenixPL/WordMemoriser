@@ -29,7 +29,6 @@ public class AddWordsPopUp extends AppCompatActivity {
         selectedSetName = receivedIntent.getStringExtra("setName");
     }
 
-
     public void saveWords_But(View view) {
         WordsDatabase wdb = new WordsDatabase(this, selectedSetName);
 
