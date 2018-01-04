@@ -35,9 +35,11 @@ public class AddWordsPopUp extends AppCompatActivity {
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
 
-        if(word1.equals("") || word2.equals(""))
+        if(word1.equals("") || word2.equals("")) {
             toastMessage("You must enter both words");
-        else{
+        } else if(hasDash(word1)) {
+            toastMessage("You can't use dashes in first word yet :(");
+        } else {
             wdb.addWords(word1, word2);
 
             Intent editSetIntent = new Intent(AddWordsPopUp.this, EditSetPopUp.class);
@@ -46,6 +48,14 @@ public class AddWordsPopUp extends AppCompatActivity {
             startActivity(editSetIntent);
             finish();
         }
+    }
+
+    boolean hasDash(String word){
+        for (int i = 0; i < word.length(); i++)
+            if(word.charAt(i) == '-')
+                return true;
+
+        return false;
     }
 
     private void toastMessage(String message){
