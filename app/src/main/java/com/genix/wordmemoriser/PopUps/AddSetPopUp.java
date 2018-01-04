@@ -3,6 +3,7 @@ package com.genix.wordmemoriser.PopUps;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.genix.wordmemoriser.Database.SetsDatabase;
 import com.genix.wordmemoriser.Database.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
-public class AddSetPopUp extends Activity {
+public class AddSetPopUp extends AppCompatActivity {
 
     private EditText getName_Text;
 
@@ -66,4 +67,3 @@ public class AddSetPopUp extends Activity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
-

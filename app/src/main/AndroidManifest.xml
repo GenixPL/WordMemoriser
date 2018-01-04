@@ -47,6 +47,14 @@
             android:name=".Game.Game"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.Settings"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopUps.EditSetNamePopUp"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

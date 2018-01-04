@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.genix.wordmemoriser.R;
 
@@ -24,6 +25,6 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void goToSettings_But(View view) {
-        //startActivity(new Intent(this, Settings.class));
+        Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
     }
 }

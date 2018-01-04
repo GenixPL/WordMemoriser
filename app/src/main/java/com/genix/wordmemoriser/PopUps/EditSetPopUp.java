@@ -3,14 +3,13 @@ package com.genix.wordmemoriser.PopUps;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Activities.ManageSets;
@@ -26,23 +25,24 @@ public class EditSetPopUp extends AppCompatActivity{
     WordsDatabase wdb;
     private String selectedSetName;
     private int selectedID;
-    private EditText setName_editText;
+    private TextView setName_Text;
     private ListView words_ListView;
 
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_up_edit_set);
 
-        sdb = new SetsDatabase(this);
-        setName_editText = findViewById(R.id.setName_editText);
-
-        wdb = new WordsDatabase(this, selectedSetName);
+        setName_Text = findViewById(R.id.setName_Text);
 
         Intent receivedIntent = getIntent();
         selectedID = receivedIntent.getIntExtra("id", -1);
         selectedSetName = receivedIntent.getStringExtra("setName");
 
-        setName_editText.setText(selectedSetName);
+        sdb = new SetsDatabase(this);
+        wdb = new WordsDatabase(this, selectedSetName);
+
+        setName_Text.setText(selectedSetName);
         words_ListView = findViewById(R.id.words_ListView);
         displayListView();
 
@@ -116,7 +116,7 @@ public class EditSetPopUp extends AppCompatActivity{
 
     public void delete_But(View view) {
         sdb.deleteName(selectedID, selectedSetName);
-        setName_editText.setText("");
+        setName_Text.setText("");
 
         wdb.deleteTable(selectedSetName);
 
@@ -124,17 +124,12 @@ public class EditSetPopUp extends AppCompatActivity{
         finish();
     } //AD "ARE U SURE" QUESTION
 
-    public void save_But(View view) {
-        String item = setName_editText.getText().toString();
-        if(item.equals(""))
-            toastMessage("You must enter a name");
-        else {
-            wdb.changeTableName(selectedSetName + "_table", item + "_table"); //DON'T KNOW WHY THIS DOESN'T WORK WITHOUT "_TABLE"
-            sdb.updateName(item, selectedID, selectedSetName);
-
-            startActivity(new Intent(this, ManageSets.class));
-            finish();
-        }
+    public void editName_But(View view) {
+        Intent editSetNameIntent = new Intent(EditSetPopUp.this, EditSetNamePopUp.class);
+        editSetNameIntent.putExtra("setName", selectedSetName);
+        editSetNameIntent.putExtra("id", selectedID);
+        startActivity(editSetNameIntent);
+        finish();
     }
 
     private void toastMessage(String message){
