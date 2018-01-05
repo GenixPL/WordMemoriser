@@ -1,13 +1,10 @@
-package com.genix.wordmemoriser.Database;
+package com.genix.wordmemoriser.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
-import com.genix.wordmemoriser.Activities.ManageSets;
 
 public class WordsDatabase extends SQLiteOpenHelper {
 
@@ -113,4 +110,5 @@ public class WordsDatabase extends SQLiteOpenHelper {
         String query = "ALTER TABLE " + oldTableName + " RENAME TO " + newTableName;
         db.execSQL(query);
     }
+
 }

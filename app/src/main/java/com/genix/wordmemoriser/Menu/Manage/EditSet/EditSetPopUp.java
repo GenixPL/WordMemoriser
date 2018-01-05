@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.PopUps;
+package com.genix.wordmemoriser.Menu.Manage.EditSet;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,9 +12,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Activities.ManageSets;
-import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.Database.WordsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.SetName.EditSetNamePopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.AddWordsPopUp;
+import com.genix.wordmemoriser.Menu.Manage.ManageSets;
+import com.genix.wordmemoriser.Databases.SetsDatabase;
+import com.genix.wordmemoriser.Databases.WordsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.EditWordsPopUp;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;

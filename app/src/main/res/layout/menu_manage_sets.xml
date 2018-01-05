@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ManageSets">
+    tools:context=".Menu.Manage.ManageSets">
 
     <Button
         android:id="@+id/addSet_but"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        android:onClick="addSet_But"/>
+        android:onClick="goToAddSet_But"/>
 
     <ListView
         android:id="@+id/sets_listView"

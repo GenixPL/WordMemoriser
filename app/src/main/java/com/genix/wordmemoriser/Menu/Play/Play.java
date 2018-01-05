@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Activities;
+package com.genix.wordmemoriser.Menu.Play;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,15 +11,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.Game.Game;
+import com.genix.wordmemoriser.Databases.SetsDatabase;
+import com.genix.wordmemoriser.Menu.Play.Game.Game;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
 public class Play extends AppCompatActivity{
 
-    SetsDatabase sdb;
+    private SetsDatabase sdb;
     private ListView sets_ListView;
 
     @Override
@@ -29,7 +29,9 @@ public class Play extends AppCompatActivity{
 
         sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);
+
         displayListView();
+
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String setName = adapterView.getItemAtPosition(i).toString();
@@ -55,13 +57,13 @@ public class Play extends AppCompatActivity{
 
     private void displayListView(){
         Cursor data = sdb.getData();
-        ArrayList<String> listedData = new ArrayList<>();
+        ArrayList<String> dataToList = new ArrayList<>(0);
 
         while(data.moveToNext()){
-            listedData.add(data.getString(1)); // 1 - first column (not 0)
+            dataToList.add(data.getString(1)); // 1 - first column (not 0)
         }
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listedData);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataToList);
         sets_ListView.setAdapter(adapter);
     }
 

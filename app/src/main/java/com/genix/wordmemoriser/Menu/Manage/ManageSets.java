@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Activities;
+package com.genix.wordmemoriser.Menu.Manage;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,9 +11,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.PopUps.AddSetPopUp;
-import com.genix.wordmemoriser.PopUps.EditSetPopUp;
+import com.genix.wordmemoriser.Databases.SetsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSetPopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSetPopUp;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
@@ -55,9 +55,8 @@ public class ManageSets extends AppCompatActivity{
         });
     }
 
-    public void addSet_But(View view){
+    public void goToAddSet_But(View view){
         startActivity(new Intent(this, AddSetPopUp.class));
-
         finish();
     }
 

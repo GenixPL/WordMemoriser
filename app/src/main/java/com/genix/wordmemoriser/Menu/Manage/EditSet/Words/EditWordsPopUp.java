@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.PopUps;
+package com.genix.wordmemoriser.Menu.Manage.EditSet.Words;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.Database.WordsDatabase;
+import com.genix.wordmemoriser.Databases.WordsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSetPopUp;
 import com.genix.wordmemoriser.R;
 
 public class EditWordsPopUp extends AppCompatActivity{
@@ -43,17 +43,20 @@ public class EditWordsPopUp extends AppCompatActivity{
 
     public void saveWords_But(View view) {
 
-        String item1 = word1_editText.getText().toString();
-        String item2 = word2_editText.getText().toString();
+        String word1 = word1_editText.getText().toString();
+        String word2 = word2_editText.getText().toString();
 
-        if(item1.equals("") || item2.equals("")) {
+        word1 = removeWhiteSpaceFromEndIfExists(word1);
+        word2 = removeWhiteSpaceFromEndIfExists(word2);
+
+        if(word1.equals("") || word2.equals("")) {
             toastMessage("You must enter both names");
 
-        } else if(hasDash(item1)){
+        } else if(hasDash(word1)){
             toastMessage("You can't use dashes in first word yet :(");
 
         } else {
-            wdb.updateWords(selectedWordID, selectedWord1, item1, selectedWord2, item2);
+            wdb.updateWords(selectedWordID, selectedWord1, word1, selectedWord2, word2);
 
             Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
             editSetIntent.putExtra("id", selectedSetID);
@@ -81,6 +84,25 @@ public class EditWordsPopUp extends AppCompatActivity{
         editSetIntent.putExtra("setName", selectedSetName);
         startActivity(editSetIntent);
         finish();
+    }
+
+    String removeWhiteSpaceFromEndIfExists(String word){
+        String toReturn = word;
+        char lastChar = toReturn.charAt(toReturn.length() - 1);
+
+        while (isWhite(lastChar)) {
+            toReturn = toReturn.substring(0, toReturn.length() - 2);
+            lastChar = toReturn.charAt(toReturn.length() - 1);
+        }
+
+        return toReturn;
+    }
+
+    boolean isWhite(char sign){
+        if(sign == ' ' || sign == '\n' || sign == '\t')
+            return true;
+        else
+            return false;
     }
 
     private void toastMessage(String message){

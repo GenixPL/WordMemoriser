@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Activities.MainMenu"
+            android:name=".Menu.MainMenu"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,39 +20,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.ManageSets"
+            android:name=".Menu.Manage.ManageSets"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PopUps.AddSetPopUp"
+            android:name=".Menu.Manage.AddSet.AddSetPopUp"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PopUps.EditSetPopUp"
+            android:name=".Menu.Manage.EditSet.EditSetPopUp"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PopUps.EditWordsPopUp"
+            android:name=".Menu.Manage.EditSet.Words.EditWordsPopUp"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PopUps.AddWordsPopUp"
+            android:name=".Menu.Manage.EditSet.Words.AddWordsPopUp"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.Play"
+            android:name=".Menu.Play.Play"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Game.Game"
+            android:name=".Menu.Play.Game.Game"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.Settings"
+            android:name=".Menu.Settings.Settings"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PopUps.EditSetNamePopUp"
+            android:name=".Menu.Manage.EditSet.SetName.EditSetNamePopUp"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

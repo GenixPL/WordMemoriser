@@ -1,13 +1,9 @@
-package com.genix.wordmemoriser.Activities;
+package com.genix.wordmemoriser.Menu.Settings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.genix.wordmemoriser.R;
-
-/**
- * Created by genix on 1/4/2018.
- */
 
 public class Settings extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Game;
+package com.genix.wordmemoriser.Menu.Play.Game;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Database.WordsDatabase;
+import com.genix.wordmemoriser.Databases.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
@@ -75,18 +75,17 @@ public class Game extends AppCompatActivity {
         tempWord1 = wordsArray.get(positionOfWords).getWord1();
         tempWord2 = wordsArray.get(positionOfWords).getWord2();
 
-        tempWord2 = removeWhiteSpaces(tempWord2);
+        tempWord2 = removeWhiteSpaceFromEndIfExists(tempWord2);
+        tempWord1 = removeWhiteSpaceFromEndIfExists(tempWord1);
     }
 
-    String removeWhiteSpaces(String word){
-        String toReturn = "";
+    String removeWhiteSpaceFromEndIfExists(String word){
+        String toReturn = word;
+        char lastChar = toReturn.charAt(toReturn.length() - 1);
 
-        for(int i = 0; i < word.length(); i++){
-
-            if((i + 1) == word.length() && isWhite(word.charAt(i)))
-                continue;
-
-            toReturn += word.charAt(i);
+        while (isWhite(lastChar)) {
+            toReturn = toReturn.substring(0, toReturn.length() - 2);
+            lastChar = toReturn.charAt(toReturn.length() - 1);
         }
 
         return toReturn;
@@ -131,7 +130,7 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    public void goToNext_But(View view) {
+    public void goToNextWord_But(View view) {
         if(checkWords(getWord2()))
             goodAnswers++;
 
@@ -139,6 +138,7 @@ public class Game extends AppCompatActivity {
             double score = (goodAnswers * 100)/ wordsArray.size();
             toastMessage("You scored: " + score + "%");
             finish();
+
         } else {
             positionOfWords++;
             editTextsArray.clear();
@@ -159,8 +159,8 @@ public class Game extends AppCompatActivity {
     }
 
     boolean checkWords( String currentText){
-        currentText = removeWhiteSpaces(currentText);
-        String properText = removeWhiteSpaces(wordsArray.get(positionOfWords).getWord2());
+        currentText = removeWhiteSpaceFromEndIfExists(currentText);
+        String properText = removeWhiteSpaceFromEndIfExists(wordsArray.get(positionOfWords).getWord2());
 
         if(properText.equals(currentText))
             return true;
@@ -178,5 +178,6 @@ public class Game extends AppCompatActivity {
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }
 

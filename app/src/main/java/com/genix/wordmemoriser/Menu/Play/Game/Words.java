@@ -1,6 +1,4 @@
-package com.genix.wordmemoriser.Game;
-
-import java.util.ArrayList;
+package com.genix.wordmemoriser.Menu.Play.Game;
 
 public class Words {
 

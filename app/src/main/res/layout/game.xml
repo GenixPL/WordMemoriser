@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/check_but"
-        android:onClick="goToNext_But"/>
+        android:onClick="goToNextWord_But"/>
 
     <Button
         android:id="@+id/check_but"

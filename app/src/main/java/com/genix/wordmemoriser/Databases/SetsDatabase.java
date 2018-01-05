@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Database;
+package com.genix.wordmemoriser.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;

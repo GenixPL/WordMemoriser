@@ -1,6 +1,5 @@
-package com.genix.wordmemoriser.PopUps;
+package com.genix.wordmemoriser.Menu.Manage.AddSet;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
 
-import com.genix.wordmemoriser.Activities.ManageSets;
-import com.genix.wordmemoriser.Database.SetsDatabase;
-import com.genix.wordmemoriser.Database.WordsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.ManageSets;
+import com.genix.wordmemoriser.Databases.SetsDatabase;
+import com.genix.wordmemoriser.Databases.WordsDatabase;
 import com.genix.wordmemoriser.R;
 
 public class AddSetPopUp extends AppCompatActivity {
