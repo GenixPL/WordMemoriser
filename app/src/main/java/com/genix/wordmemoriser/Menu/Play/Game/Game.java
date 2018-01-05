@@ -63,7 +63,7 @@ public class Game extends AppCompatActivity {
         createScreen();
     }
 
-    void initializeWordsArray(){
+    private void initializeWordsArray(){
         Cursor data = wdb.getDataFromTable(selectedSetName);
 
         while (data.moveToNext()) {
@@ -71,7 +71,7 @@ public class Game extends AppCompatActivity {
         }
     }
 
-    void setWords(){
+    private void setWords(){
         tempWord1 = wordsArray.get(positionOfWords).getWord1();
         tempWord2 = wordsArray.get(positionOfWords).getWord2();
 
@@ -79,7 +79,7 @@ public class Game extends AppCompatActivity {
         tempWord1 = removeWhiteSpaceFromEndIfExists(tempWord1);
     }
 
-    String removeWhiteSpaceFromEndIfExists(String word){
+    private String removeWhiteSpaceFromEndIfExists(String word){
         String toReturn = word;
         char lastChar = toReturn.charAt(toReturn.length() - 1);
 
@@ -91,14 +91,14 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    boolean isWhite(char sign){
+    private boolean isWhite(char sign){
         if(sign == ' ' || sign == '\n' || sign == '\t')
             return true;
         else
             return false;
     }
 
-    void createScreen(){
+    private void createScreen(){
         boolean isLast = false;
         for(int i = 0; i < tempWord2.length(); i++){
             if((i + 1) == tempWord2.length())
@@ -112,7 +112,7 @@ public class Game extends AppCompatActivity {
         word1_Text.setText(tempWord1);
     }
 
-    EditText createEditText(boolean isLast){
+    private EditText createEditText(boolean isLast){
         EditText toReturn = new EditText(this);
 
         toReturn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
@@ -130,7 +130,7 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    public void goToNextWord_But(View view) {
+    protected void goToNextWord_But(View view) {
         if(checkWords(getWord2()))
             goodAnswers++;
 
@@ -148,7 +148,7 @@ public class Game extends AppCompatActivity {
         }
     }
 
-    String getWord2(){
+    private String getWord2(){
         String toReturn = "";
 
         for(int i = 0; i < editTextsArray.size(); i++){
@@ -158,7 +158,7 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    boolean checkWords( String currentText){
+    private boolean checkWords( String currentText){
         currentText = removeWhiteSpaceFromEndIfExists(currentText);
         String properText = removeWhiteSpaceFromEndIfExists(wordsArray.get(positionOfWords).getWord2());
 
@@ -168,7 +168,7 @@ public class Game extends AppCompatActivity {
             return false;
     }
 
-    public void checkWords_But(View view) {
+    protected void checkWords_But(View view) {
         if(checkWords(getWord2()))
             toastMessage("Good :)");
         else

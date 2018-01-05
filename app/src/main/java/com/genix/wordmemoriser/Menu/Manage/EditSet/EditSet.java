@@ -12,41 +12,40 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Menu.Manage.EditSet.SetName.EditSetNamePopUp;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.AddWordsPopUp;
-import com.genix.wordmemoriser.Menu.Manage.ManageSets;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.AddWords;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.EditWordsPopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.EditWords;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
-public class EditSetPopUp extends AppCompatActivity{
+public class EditSet extends AppCompatActivity{
 
-    SetsDatabase sdb;
-    WordsDatabase wdb;
+    private SetsDatabase sdb;
+    private WordsDatabase wdb;
     private String selectedSetName;
-    private int selectedID;
+    private int selectedSetID;
     private TextView setName_Text;
     private ListView words_ListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pop_up_edit_set);
-
-        setName_Text = findViewById(R.id.setName_Text);
-
-        Intent receivedIntent = getIntent();
-        selectedID = receivedIntent.getIntExtra("id", -1);
-        selectedSetName = receivedIntent.getStringExtra("setName");
+        setContentView(R.layout.edit_set);
 
         sdb = new SetsDatabase(this);
         wdb = new WordsDatabase(this, selectedSetName);
 
-        setName_Text.setText(selectedSetName);
+        Intent receivedIntent = getIntent();
+        selectedSetID = receivedIntent.getIntExtra("setID", -1);
+        selectedSetName = receivedIntent.getStringExtra("setName");
+
+        setName_Text = findViewById(R.id.setName_Text);
         words_ListView = findViewById(R.id.words_ListView);
+
+        setName_Text.setText(selectedSetName);
+
         displayListView();
 
         words_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,14 +62,15 @@ public class EditSetPopUp extends AppCompatActivity{
                 }
 
                 if(itemID > -1){
-                    Intent editWordIntent = new Intent(EditSetPopUp.this, EditWordsPopUp.class);
+                    Intent editWordIntent = new Intent(EditSet.this, EditWords.class);
                     editWordIntent.putExtra("wordID", itemID);
                     editWordIntent.putExtra("word1", word1);
                     editWordIntent.putExtra("word2", word2);
                     editWordIntent.putExtra("setName", selectedSetName);
-                    editWordIntent.putExtra("setID", selectedID);
+                    editWordIntent.putExtra("setID", selectedSetID);
                     startActivity(editWordIntent);
                     finish();
+
                 } else {
                     toastMessage("No ID associated with those words");
                 }
@@ -117,20 +117,18 @@ public class EditSetPopUp extends AppCompatActivity{
         return toReturn;
     }
 
-    public void delete_But(View view) {
-        sdb.deleteName(selectedID, selectedSetName);
-        setName_Text.setText("");
-
-        wdb.deleteTable(selectedSetName);
-
-        startActivity(new Intent(this, ManageSets.class));
+    protected void goToDeleteSet_But(View view) {
+        Intent deleteSetIntent = new Intent(EditSet.this, DeleteSet.class);
+        deleteSetIntent.putExtra("setName", selectedSetName);
+        deleteSetIntent.putExtra("setID", selectedSetID);
+        startActivity(deleteSetIntent);
         finish();
-    } //AD "ARE U SURE" QUESTION
+    }
 
-    public void editName_But(View view) {
-        Intent editSetNameIntent = new Intent(EditSetPopUp.this, EditSetNamePopUp.class);
+    protected void goToEditName_But(View view) {
+        Intent editSetNameIntent = new Intent(EditSet.this, EditSetName.class);
         editSetNameIntent.putExtra("setName", selectedSetName);
-        editSetNameIntent.putExtra("id", selectedID);
+        editSetNameIntent.putExtra("setID", selectedSetID);
         startActivity(editSetNameIntent);
         finish();
     }
@@ -152,12 +150,12 @@ public class EditSetPopUp extends AppCompatActivity{
         words_ListView.setAdapter(adapter);
     }
 
-    public void addWord_But(View view) {
-        Intent editSetIntent = new Intent(EditSetPopUp.this, AddWordsPopUp.class);
+    protected void addWord_But(View view) {
+        Intent editSetIntent = new Intent(EditSet.this, AddWords.class);
         editSetIntent.putExtra("setName", selectedSetName);
-        editSetIntent.putExtra("id", selectedID);
+        editSetIntent.putExtra("setID", selectedSetID);
         startActivity(editSetIntent);
 
         finish();
-    } //POSSIBLE ERRORS WITH PUTEXTRA
+    }
 }

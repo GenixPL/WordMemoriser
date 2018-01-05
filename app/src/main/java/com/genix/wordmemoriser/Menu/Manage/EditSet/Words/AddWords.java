@@ -9,28 +9,28 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSetPopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
-public class AddWordsPopUp extends AppCompatActivity {
+public class AddWords extends AppCompatActivity {
 
-    EditText word1_editText, word2_editText;
+    private EditText word1_editText, word2_editText;
     private String selectedSetName;
-    private int selectedID;
+    private int selectedSetID;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pop_up_add_words);
+        setContentView(R.layout.add_words);
 
         word1_editText = findViewById(R.id.word1_editText);
         word2_editText = findViewById(R.id.word2_editText);
 
         Intent receivedIntent = getIntent();
-        selectedID = receivedIntent.getIntExtra("id", -1);
+        selectedSetID = receivedIntent.getIntExtra("setID", -1);
         selectedSetName = receivedIntent.getStringExtra("setName");
     }
 
-    public void saveWords_But(View view) {
+    protected void saveWords_But(View view) {
         WordsDatabase wdb = new WordsDatabase(this, selectedSetName);
 
         String word1 = word1_editText.getText().toString();
@@ -48,15 +48,15 @@ public class AddWordsPopUp extends AppCompatActivity {
         } else {
             wdb.addWords(word1, word2);
 
-            Intent editSetIntent = new Intent(AddWordsPopUp.this, EditSetPopUp.class);
+            Intent editSetIntent = new Intent(AddWords.this, EditSet.class);
             editSetIntent.putExtra("setName", selectedSetName);
-            editSetIntent.putExtra("id", selectedID);
+            editSetIntent.putExtra("setID", selectedSetID);
             startActivity(editSetIntent);
             finish();
         }
     }
 
-    String removeWhiteSpaceFromEndIfExists(String word){
+    private String removeWhiteSpaceFromEndIfExists(String word){
         String toReturn = word;
         char lastChar = toReturn.charAt(toReturn.length() - 1);
 
@@ -68,14 +68,14 @@ public class AddWordsPopUp extends AppCompatActivity {
         return toReturn;
     }
 
-    boolean isWhite(char sign){
+    private boolean isWhite(char sign){
         if(sign == ' ' || sign == '\n' || sign == '\t')
             return true;
         else
             return false;
     }
 
-    boolean hasDash(String word){
+    private boolean hasDash(String word){
         for (int i = 0; i < word.length(); i++)
             if(word.charAt(i) == '-')
                 return true;

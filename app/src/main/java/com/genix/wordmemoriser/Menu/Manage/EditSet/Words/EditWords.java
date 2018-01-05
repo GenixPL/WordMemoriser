@@ -9,13 +9,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSetPopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
-public class EditWordsPopUp extends AppCompatActivity{
+public class EditWords extends AppCompatActivity{
 
     private EditText word1_editText, word2_editText;
-    WordsDatabase wdb;
+    private WordsDatabase wdb;
     private String selectedWord1;
     private String selectedWord2;
     private int selectedWordID;
@@ -24,7 +24,7 @@ public class EditWordsPopUp extends AppCompatActivity{
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pop_up_edit_words);
+        setContentView(R.layout.edit_words);
 
         Intent receivedIntent = getIntent();
         selectedWordID = receivedIntent.getIntExtra("wordID", -1);
@@ -41,7 +41,7 @@ public class EditWordsPopUp extends AppCompatActivity{
         word2_editText.setText(selectedWord2);
     }
 
-    public void saveWords_But(View view) {
+    protected void saveWords_But(View view) {
 
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
@@ -58,15 +58,15 @@ public class EditWordsPopUp extends AppCompatActivity{
         } else {
             wdb.updateWords(selectedWordID, selectedWord1, word1, selectedWord2, word2);
 
-            Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
-            editSetIntent.putExtra("id", selectedSetID);
+            Intent editSetIntent = new Intent(EditWords.this, EditSet.class);
+            editSetIntent.putExtra("setID", selectedSetID);
             editSetIntent.putExtra("setName", selectedSetName);
             startActivity(editSetIntent);
             finish();
         }
     }
 
-    boolean hasDash(String word){
+    private boolean hasDash(String word){
         for (int i = 0; i < word.length(); i++)
             if(word.charAt(i) == '-')
                 return true;
@@ -74,19 +74,19 @@ public class EditWordsPopUp extends AppCompatActivity{
         return false;
     }
 
-    public void deleteWords_But(View view) {
+    protected void deleteWords_But(View view) {
         wdb.deleteWords(selectedWordID, selectedWord1, selectedWord2);
         word1_editText.setText("");
         word2_editText.setText("");
 
-        Intent editSetIntent = new Intent(EditWordsPopUp.this, EditSetPopUp.class);
-        editSetIntent.putExtra("id", selectedSetID);
+        Intent editSetIntent = new Intent(EditWords.this, EditSet.class);
+        editSetIntent.putExtra("setID", selectedSetID);
         editSetIntent.putExtra("setName", selectedSetName);
         startActivity(editSetIntent);
         finish();
     }
 
-    String removeWhiteSpaceFromEndIfExists(String word){
+    private String removeWhiteSpaceFromEndIfExists(String word){
         String toReturn = word;
         char lastChar = toReturn.charAt(toReturn.length() - 1);
 
@@ -98,7 +98,7 @@ public class EditWordsPopUp extends AppCompatActivity{
         return toReturn;
     }
 
-    boolean isWhite(char sign){
+    private boolean isWhite(char sign){
         if(sign == ' ' || sign == '\n' || sign == '\t')
             return true;
         else

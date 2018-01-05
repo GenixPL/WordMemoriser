@@ -25,7 +25,7 @@ public class Play extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_play);
+        setContentView(R.layout.play);
 
         sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);

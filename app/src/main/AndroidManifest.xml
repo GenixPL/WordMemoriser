@@ -28,15 +28,15 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.EditSetPopUp"
+            android:name=".Menu.Manage.EditSet.EditSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.Words.EditWordsPopUp"
+            android:name=".Menu.Manage.EditSet.Words.EditWords"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.Words.AddWordsPopUp"
+            android:name=".Menu.Manage.EditSet.Words.AddWords"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
@@ -52,7 +52,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.SetName.EditSetNamePopUp"
+            android:name=".Menu.Manage.EditSet.EditSetName"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Menu.Manage.EditSet.DeleteSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

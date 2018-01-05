@@ -15,27 +15,21 @@ import com.genix.wordmemoriser.R;
 public class AddSetPopUp extends AppCompatActivity {
 
     private EditText getName_Text;
+    private SetsDatabase sdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pop_up_add_set);
+        setContentView(R.layout.add_set);
 
         getName_Text = findViewById(R.id.editText);
+        sdb = new SetsDatabase(this);
     }
 
-    public void saveAndGoBack_But(View view){
-
-        SetsDatabase sdb = new SetsDatabase(this);
-
+    protected void saveAndGoBack_But(View view){
         String newSetName = getName_Text.getText().toString();
-        if(newSetName.equals(""))
-            toastMessage("You must enter a name");
-        else {
-            if(hasWhiteSpaces(newSetName)) {
-                toastMessage("Sorry you can use only letters and numbers for now :(");
-                return;
-            }
+
+        if(hasProperName(newSetName)){
             boolean worked = sdb.addSet(newSetName);
             WordsDatabase wdb = new WordsDatabase(this, newSetName);
             wdb.createTable(newSetName);
@@ -50,10 +44,35 @@ public class AddSetPopUp extends AppCompatActivity {
         }
     }
 
-    boolean hasWhiteSpaces(String string){
+    private boolean hasProperName(String newSetName){
+        if(newSetName.equals("")) {
+            toastMessage("You must enter a name");
+            return false;
 
-        for (int i = 0; i < string.length(); i++){
-            char sign = string.charAt(i);
+        } else if(hasWhiteSpaces(newSetName)) {
+            toastMessage("Sorry you can use only letters and numbers for now :(");
+            return false;
+
+        } else if(hasDigitFirst(newSetName)){
+            toastMessage("The name can't start with a digit :(");
+            return false;
+
+        } else {
+            return true;
+        }
+    }
+
+    private boolean hasDigitFirst(String newSetName){
+        if(Character.isDigit(newSetName.charAt(0)))
+            return true;
+        else
+            return false;
+    }
+
+    private boolean hasWhiteSpaces(String newSetName){
+
+        for (int i = 0; i < newSetName.length(); i++){
+            char sign = newSetName.charAt(i);
 
             if(!Character.isDigit(sign) && !Character.isLetter(sign))
                 return true;
@@ -65,4 +84,5 @@ public class AddSetPopUp extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }

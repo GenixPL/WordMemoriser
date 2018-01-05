@@ -13,22 +13,23 @@ import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSetPopUp;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSetPopUp;
+import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
 public class ManageSets extends AppCompatActivity{
 
-    SetsDatabase sdb;
+    private SetsDatabase sdb;
     private ListView sets_ListView;
 
     protected void onCreate(Bundle savedInstanceSate){
         super.onCreate(savedInstanceSate);
-        setContentView(R.layout.menu_manage_sets);
+        setContentView(R.layout.manage_sets);
 
-        sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);
+        sets_ListView = findViewById(R.id.sets_listView);
+
         displayListView();
 
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,11 +44,12 @@ public class ManageSets extends AppCompatActivity{
                 }
 
                 if(itemID > -1){
-                    Intent editSetIntent = new Intent(ManageSets.this, EditSetPopUp.class);
-                    editSetIntent.putExtra("id", itemID);
+                    Intent editSetIntent = new Intent(ManageSets.this, EditSet.class);
+                    editSetIntent.putExtra("setID", itemID);
                     editSetIntent.putExtra("setName", setName);
                     startActivity(editSetIntent);
                     finish();
+
                 } else {
                     toastMessage("No ID associated with that name");
                 }
@@ -55,7 +57,7 @@ public class ManageSets extends AppCompatActivity{
         });
     }
 
-    public void goToAddSet_But(View view){
+    protected void goToAddSet_But(View view){
         startActivity(new Intent(this, AddSetPopUp.class));
         finish();
     }
@@ -65,7 +67,7 @@ public class ManageSets extends AppCompatActivity{
         ArrayList<String> listedData = new ArrayList<>();
 
         while(data.moveToNext()){
-            listedData.add(data.getString(1)); // 1 - first column (not 0)
+            listedData.add(data.getString(1));
         }
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listedData);
