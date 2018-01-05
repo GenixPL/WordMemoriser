@@ -37,10 +37,7 @@ public class SetsDatabase extends SQLiteOpenHelper{
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
-        if(result == -1) //inserted incorrectly
-            return false;
-        else
-            return true;
+        return result != -1;
     }
 
     public Cursor getData(){

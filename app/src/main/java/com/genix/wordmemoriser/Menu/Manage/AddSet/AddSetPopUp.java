@@ -3,13 +3,13 @@ package com.genix.wordmemoriser.Menu.Manage.AddSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.view.View;
 
-import com.genix.wordmemoriser.Menu.Manage.ManageSets;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Databases.WordsDatabase;
+import com.genix.wordmemoriser.Menu.Manage.ManageSets;
 import com.genix.wordmemoriser.R;
 
 public class AddSetPopUp extends AppCompatActivity {
@@ -63,10 +63,7 @@ public class AddSetPopUp extends AppCompatActivity {
     }
 
     private boolean hasDigitFirst(String newSetName){
-        if(Character.isDigit(newSetName.charAt(0)))
-            return true;
-        else
-            return false;
+        return Character.isDigit(newSetName.charAt(0));
     }
 
     private boolean hasWhiteSpaces(String newSetName){

@@ -69,10 +69,7 @@ public class AddWords extends AppCompatActivity {
     }
 
     private boolean isWhite(char sign){
-        if(sign == ' ' || sign == '\n' || sign == '\t')
-            return true;
-        else
-            return false;
+        return sign == ' ' || sign == '\n' || sign == '\t';
     }
 
     private boolean hasDash(String word){

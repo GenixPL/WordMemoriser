@@ -92,10 +92,7 @@ public class Game extends AppCompatActivity {
     }
 
     private boolean isWhite(char sign){
-        if(sign == ' ' || sign == '\n' || sign == '\t')
-            return true;
-        else
-            return false;
+        return sign == ' ' || sign == '\n' || sign == '\t';
     }
 
     private void createScreen(){
@@ -161,10 +158,7 @@ public class Game extends AppCompatActivity {
     private boolean checkWords(String currentText){
         String properText = wordsArray.get(positionOfWords).getWord2();
 
-        if(properText.equals(currentText))
-            return true;
-        else
-            return false;
+        return properText.equals(currentText);
     }
 
     protected void checkWords_But(View view) {
