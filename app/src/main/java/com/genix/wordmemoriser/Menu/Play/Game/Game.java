@@ -158,9 +158,8 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    private boolean checkWords( String currentText){
-        currentText = removeWhiteSpaceFromEndIfExists(currentText);
-        String properText = removeWhiteSpaceFromEndIfExists(wordsArray.get(positionOfWords).getWord2());
+    private boolean checkWords(String currentText){
+        String properText = wordsArray.get(positionOfWords).getWord2();
 
         if(properText.equals(currentText))
             return true;
