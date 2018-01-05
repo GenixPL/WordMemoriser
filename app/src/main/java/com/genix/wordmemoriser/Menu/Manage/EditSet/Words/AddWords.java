@@ -36,8 +36,8 @@ public class AddWords extends AppCompatActivity {
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
 
-        word1 = removeWhiteSpaceFromEndIfExists(word1);
-        word2 = removeWhiteSpaceFromEndIfExists(word2);
+        word1 = removeWhiteSpaceFromEnds(word1);
+        word2 = removeWhiteSpaceFromEnds(word2);
 
         if(word1.equals("") || word2.equals("")) {
             toastMessage("You must enter both words");
@@ -56,13 +56,19 @@ public class AddWords extends AppCompatActivity {
         }
     }
 
-    private String removeWhiteSpaceFromEndIfExists(String word){
+    private String removeWhiteSpaceFromEnds(String word){
         String toReturn = word;
         char lastChar = toReturn.charAt(toReturn.length() - 1);
+        char firstChar = toReturn.charAt(0);
 
         while (isWhite(lastChar)) {
-            toReturn = toReturn.substring(0, toReturn.length() - 2);
+            toReturn = toReturn.substring(0, toReturn.length() - 1);
             lastChar = toReturn.charAt(toReturn.length() - 1);
+        }
+
+        while (isWhite(firstChar)) {
+            toReturn = toReturn.substring(1, toReturn.length());
+            firstChar = toReturn.charAt(0);
         }
 
         return toReturn;

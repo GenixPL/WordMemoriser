@@ -78,6 +78,19 @@ public class EditSet extends AppCompatActivity{
         });
     }
 
+    private void displayListView(){
+        Cursor data = wdb.getDataFromTable(selectedSetName);
+        ArrayList<String> listedData = new ArrayList<>();
+
+        while(data.moveToNext()){
+            String toInsert = data.getString(1) + " - " + data.getString(2);
+            listedData.add(toInsert);
+        }
+
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listedData);
+        words_ListView.setAdapter(adapter);
+    }
+
     private String giveFirstWord(String input){
         String toReturn = "";
         boolean flag = true;
@@ -133,23 +146,6 @@ public class EditSet extends AppCompatActivity{
         finish();
     }
 
-    private void toastMessage(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void displayListView(){
-        Cursor data = wdb.getDataFromTable(selectedSetName);
-        ArrayList<String> listedData = new ArrayList<>();
-
-        while(data.moveToNext()){
-            String toInsert = data.getString(1) + " - " + data.getString(2);
-            listedData.add(toInsert);
-        }
-
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listedData);
-        words_ListView.setAdapter(adapter);
-    }
-
     protected void addWord_But(View view) {
         Intent editSetIntent = new Intent(EditSet.this, AddWords.class);
         editSetIntent.putExtra("setName", selectedSetName);
@@ -158,4 +154,9 @@ public class EditSet extends AppCompatActivity{
 
         finish();
     }
+
+    private void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
 }
