@@ -130,7 +130,7 @@ public class EditSet extends AppCompatActivity{
         return toReturn;
     }
 
-    protected void goToDeleteSet_But(View view) {
+    public void goToDeleteSet_But(View view) {
         Intent deleteSetIntent = new Intent(EditSet.this, DeleteSet.class);
         deleteSetIntent.putExtra("setName", selectedSetName);
         deleteSetIntent.putExtra("setID", selectedSetID);
@@ -138,7 +138,7 @@ public class EditSet extends AppCompatActivity{
         finish();
     }
 
-    protected void goToEditName_But(View view) {
+    public void goToEditName_But(View view) {
         Intent editSetNameIntent = new Intent(EditSet.this, EditSetName.class);
         editSetNameIntent.putExtra("setName", selectedSetName);
         editSetNameIntent.putExtra("setID", selectedSetID);
@@ -146,7 +146,7 @@ public class EditSet extends AppCompatActivity{
         finish();
     }
 
-    protected void addWord_But(View view) {
+    public void addWord_But(View view) {
         Intent editSetIntent = new Intent(EditSet.this, AddWords.class);
         editSetIntent.putExtra("setName", selectedSetName);
         editSetIntent.putExtra("setID", selectedSetID);

@@ -41,7 +41,7 @@ public class EditWords extends AppCompatActivity{
         word2_editText.setText(selectedWord2);
     }
 
-    protected void saveWords_But(View view) {
+    public void saveWords_But(View view) {
 
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
@@ -74,7 +74,7 @@ public class EditWords extends AppCompatActivity{
         return false;
     }
 
-    protected void deleteWords_But(View view) {
+    public void deleteWords_But(View view) {
         wdb.deleteWords(selectedWordID, selectedWord1, selectedWord2);
         word1_editText.setText("");
         word2_editText.setText("");

@@ -127,7 +127,7 @@ public class Game extends AppCompatActivity {
         return toReturn;
     }
 
-    protected void goToNextWord_But(View view) {
+    public void goToNextWord_But(View view) {
         if(checkWords(getWord2()))
             goodAnswers++;
 
@@ -161,7 +161,7 @@ public class Game extends AppCompatActivity {
         return properText.equals(currentText);
     }
 
-    protected void checkWords_But(View view) {
+    public void checkWords_But(View view) {
         if(checkWords(getWord2()))
             toastMessage("Good :)");
         else

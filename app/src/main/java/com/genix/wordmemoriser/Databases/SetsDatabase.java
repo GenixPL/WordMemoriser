@@ -73,4 +73,23 @@ public class SetsDatabase extends SQLiteOpenHelper{
                 + COL_1 + " = '" + name + "'";
         db.execSQL(query);
     }
+
+    public boolean hasInside(String setName){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT " + COL_0 + " FROM " + TABLE_NAME + " WHERE " + COL_1
+                + " = '" + setName + "'";
+        Cursor data = db.rawQuery(query, null);
+
+        int dataId = -1;
+
+        if(data.moveToNext())
+            dataId = data.getInt(0);
+
+        if(dataId == -1)
+            return false;
+        else
+            return true;
+    }
+
 }

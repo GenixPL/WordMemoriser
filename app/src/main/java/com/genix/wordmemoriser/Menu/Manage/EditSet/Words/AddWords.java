@@ -30,7 +30,7 @@ public class AddWords extends AppCompatActivity {
         selectedSetName = receivedIntent.getStringExtra("setName");
     }
 
-    protected void saveWords_But(View view) {
+    public void saveWords_But(View view) {
         WordsDatabase wdb = new WordsDatabase(this, selectedSetName);
 
         String word1 = word1_editText.getText().toString();

@@ -26,7 +26,7 @@ public class AddSetPopUp extends AppCompatActivity {
         sdb = new SetsDatabase(this);
     }
 
-    protected void saveAndGoBack_But(View view){
+    public void saveAndGoBack_But(View view){
         String newSetName = getName_Text.getText().toString();
 
         if(hasProperName(newSetName)){
@@ -55,6 +55,10 @@ public class AddSetPopUp extends AppCompatActivity {
 
         } else if(hasDigitFirst(newSetName)){
             toastMessage("The name can't start with a digit :(");
+            return false;
+
+        } else if (sdb.hasInside(newSetName)) {
+            toastMessage("Set with such a name already exists");
             return false;
 
         } else {

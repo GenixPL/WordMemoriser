@@ -57,7 +57,7 @@ public class ManageSets extends AppCompatActivity{
         });
     }
 
-    protected void goToAddSet_But(View view){
+    public void goToAddSet_But(View view){
         startActivity(new Intent(this, AddSetPopUp.class));
         finish();
     }

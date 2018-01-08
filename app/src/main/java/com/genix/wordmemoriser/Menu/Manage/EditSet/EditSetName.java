@@ -49,6 +49,10 @@ public class EditSetName extends AppCompatActivity {
             toastMessage("The name can't start with a digit :(");
             return false;
 
+        } else if (sdb.hasInside(newSetName)) {
+            toastMessage("Set with such a name already exists");
+            return false;
+
         } else {
             return true;
         }
@@ -68,7 +72,7 @@ public class EditSetName extends AppCompatActivity {
         return false;
     }
 
-    protected void saveAndGoToEditSet_But(View view) {
+    public void saveAndGoToEditSet_But(View view) {
         String newSetName = editSetName_EditText.getText().toString();
 
         if(newSetName.equals(selectedSetName)){

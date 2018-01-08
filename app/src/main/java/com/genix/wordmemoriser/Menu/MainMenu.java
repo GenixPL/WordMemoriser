@@ -18,15 +18,15 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
     }
 
-    protected void goToManageSets_But(View view) {
+    public void goToManageSets_But(View view) {
         startActivity(new Intent(this, ManageSets.class));
     }
 
-    protected void goToPlay_But(View view) {
+    public void goToPlay_But(View view) {
         startActivity(new Intent(this, Play.class));
     }
 
-    protected void goToSettings_But(View view) {
+    public void goToSettings_But(View view) {
         Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
     }
 }

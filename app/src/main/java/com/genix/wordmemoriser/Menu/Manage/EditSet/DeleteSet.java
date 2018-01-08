@@ -30,7 +30,7 @@ public class DeleteSet extends AppCompatActivity {
         wdb = new WordsDatabase(this, selectedSetName);
     }
 
-    protected void goToManageSet_But(View view) {
+    public void goToManageSet_But(View view) {
         Intent manageSetIntent = new Intent(this, EditSet.class);
         manageSetIntent.putExtra("setName", selectedSetName);
         manageSetIntent.putExtra("setID", selectedSetID);
@@ -38,7 +38,7 @@ public class DeleteSet extends AppCompatActivity {
         finish();
     }
 
-    protected void deleteSetAndGoToManageSets_But(View view) {
+    public void deleteSetAndGoToManageSets_But(View view) {
         sdb.deleteName(selectedSetID, selectedSetName);
         wdb.deleteTable(selectedSetName);
 
