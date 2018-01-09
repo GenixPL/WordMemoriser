@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -97,6 +99,7 @@ public class Game extends AppCompatActivity {
 
     private void createScreen(){
         boolean isLast = false;
+
         for(int i = 0; i < tempWord2.length(); i++){
             if((i + 1) == tempWord2.length())
                 isLast = true;
@@ -105,12 +108,35 @@ public class Game extends AppCompatActivity {
             editTextsArray.add(tempText);
             horizontal_Layout.addView(tempText);
         }
+        setAddTextChangedListener();
 
         word1_Text.setText(tempWord1);
     }
 
+    private void setAddTextChangedListener(){
+        for(int i = 0; i < (editTextsArray.size() - 1); i++){
+            final EditText currentText = editTextsArray.get(i);
+            final EditText nextText = editTextsArray.get(i + 1);
+            currentText.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(currentText.getText().toString().length() == 1)
+                        nextText.requestFocus();
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
+    }
+
     private EditText createEditText(boolean isLast){
-        EditText toReturn = new EditText(this);
+        final EditText toReturn = new EditText(this);
 
         toReturn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         toReturn.setGravity(Gravity.CENTER);
