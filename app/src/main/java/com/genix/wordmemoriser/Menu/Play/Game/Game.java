@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -130,25 +131,37 @@ public class Game extends AppCompatActivity {
                 }
 
                 @Override
-                public void afterTextChanged(Editable s) {}
+                public void afterTextChanged(Editable s) {
+                    currentText.setBackgroundResource(R.drawable.edit_text_standard);
+                }
             });
         }
     }
 
     private EditText createEditText(boolean isLast){
         final EditText toReturn = new EditText(this);
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
 
-        toReturn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         toReturn.setGravity(Gravity.CENTER);
         toReturn.setFilters(new InputFilter[] {new InputFilter.LengthFilter(1)});
         toReturn.setInputType(InputType.TYPE_CLASS_TEXT);
         toReturn.setTextSize(30);
         toReturn.setSelectAllOnFocus(true);
+        toReturn.setBackgroundResource(R.drawable.edit_text_standard);
+        toReturn.setEms(1);
 
-        if(isLast)
+        if(isLast) {
             toReturn.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        else
+            params.setMargins(16,8,16,8);
+            toReturn.setLayoutParams(params);
+
+        } else {
             toReturn.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            params.setMargins(16,8,0,8);
+            toReturn.setLayoutParams(params);
+
+        }
 
         return toReturn;
     }
@@ -187,11 +200,35 @@ public class Game extends AppCompatActivity {
         return properText.equals(currentText);
     }
 
+    private void colorEditTexts(){
+        String properText = wordsArray.get(positionOfWords).getWord2();
+
+        for(int i = 0; i < editTextsArray.size(); i++){
+            EditText currentEditText = editTextsArray.get(i);
+
+            if(currentEditText.getText().toString().equals("")){
+                currentEditText.setBackgroundResource(R.drawable.edit_text_red);
+                continue;
+            }
+
+            char currentChar = currentEditText.getText().toString().charAt(0);
+            char properChar = properText.charAt(i);
+
+
+            if (currentChar != properChar)
+                currentEditText.setBackgroundResource(R.drawable.edit_text_red);
+            else
+                currentEditText.setBackgroundResource(R.drawable.edit_text_green);
+        }
+    }
+
     public void checkWords_But(View view) {
         if(checkWords(getWord2()))
             toastMessage("Good :)");
         else
             toastMessage("Bad :(");
+
+        colorEditTexts();
     }
 
     private void toastMessage(String message) {
