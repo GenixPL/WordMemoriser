@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.SetsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSetPopUp;
+import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSet;
 import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
@@ -58,7 +58,7 @@ public class ManageSets extends AppCompatActivity{
     }
 
     public void goToAddSet_But(View view){
-        startActivity(new Intent(this, AddSetPopUp.class));
+        startActivity(new Intent(this, AddSet.class));
         finish();
     }
 

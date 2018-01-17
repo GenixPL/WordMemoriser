@@ -24,7 +24,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.AddSet.AddSetPopUp"
+            android:name=".Menu.Manage.AddSet.AddSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity

@@ -36,16 +36,12 @@ public class AddWords extends AppCompatActivity {
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
 
-        word1 = removeWhiteSpaceFromEnds(word1);
-        word2 = removeWhiteSpaceFromEnds(word2);
+        if(!word1.equals("") && !word2.equals("")) {
+            word1 = removeWhiteSpaceFromEnds(word1);
+            word2 = removeWhiteSpaceFromEnds(word2);
+        }
 
-        if(word1.equals("") || word2.equals("")) {
-            toastMessage("You must enter both words");
-
-        } else if(hasDash(word1)) {
-            toastMessage("You can't use dashes in first word yet :(");
-
-        } else {
+        if(hasProperWords(word1, word2)){
             wdb.addWords(word1, word2);
 
             Intent editSetIntent = new Intent(AddWords.this, EditSet.class);
@@ -54,6 +50,23 @@ public class AddWords extends AppCompatActivity {
             startActivity(editSetIntent);
             finish();
         }
+    }
+
+    private boolean hasProperWords(String word1, String word2){
+        if(word1.equals("") || word2.equals("")) {
+            toastMessage("You must enter both words");
+            return false;
+
+        } else if(hasDash(word1)) {
+            toastMessage("You can't use dashes in first word yet :(");
+            return false;
+
+        } else if(hasWhite()) {
+            toastMessage("You can't use white spaces in first word");
+            return false;
+        }
+
+        return true;
     }
 
     private String removeWhiteSpaceFromEnds(String word){
@@ -82,6 +95,15 @@ public class AddWords extends AppCompatActivity {
         for (int i = 0; i < word.length(); i++)
             if(word.charAt(i) == '-')
                 return true;
+
+        return false;
+    }
+
+    private boolean hasWhite(){
+        for (int i = 0; i < word1_editText.length(); i++){
+            if(isWhite(word1_editText.getText().charAt(i)))
+                return true;
+        }
 
         return false;
     }

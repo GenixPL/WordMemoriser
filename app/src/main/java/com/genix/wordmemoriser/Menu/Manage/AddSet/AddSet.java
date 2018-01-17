@@ -12,7 +12,7 @@ import com.genix.wordmemoriser.Databases.WordsDatabase;
 import com.genix.wordmemoriser.Menu.Manage.ManageSets;
 import com.genix.wordmemoriser.R;
 
-public class AddSetPopUp extends AppCompatActivity {
+public class AddSet extends AppCompatActivity {
 
     private EditText getName_Text;
     private SetsDatabase sdb;
