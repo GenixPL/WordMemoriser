@@ -44,7 +44,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Play.Game.GameController"
+            android:name=".Menu.Play.Game.GameView"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity

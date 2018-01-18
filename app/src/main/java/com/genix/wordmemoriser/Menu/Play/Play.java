@@ -12,8 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.SetsDatabase;
-import com.genix.wordmemoriser.Menu.Play.Game.Game;
-import com.genix.wordmemoriser.Menu.Play.Game.GameController;
+import com.genix.wordmemoriser.Menu.Play.Game.GameView;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class Play extends AppCompatActivity{
                 }
 
                 if(itemID > -1){
-                    Intent editSetIntent = new Intent(Play.this, GameController.class);
+                    Intent editSetIntent = new Intent(Play.this, GameView.class);
                     editSetIntent.putExtra("id", itemID);
                     editSetIntent.putExtra("setName", setName);
                     startActivity(editSetIntent);
