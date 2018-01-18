@@ -2,6 +2,7 @@ package com.genix.wordmemoriser.Menu.Play.Game;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.UserDictionary;
 
 import com.genix.wordmemoriser.Databases.WordsDatabase;
 
@@ -23,6 +24,7 @@ public class GameModel {
     private int currentPositionInWordsArray;
     private int goodAnswers;
     private int allAnswers;
+    private boolean[] isMarkedCorrectness;
 
 
     GameModel(Context context, String selectedSetName) throws IndexOutOfBoundsException{
@@ -57,6 +59,8 @@ public class GameModel {
         while (stringTokenizer.hasMoreTokens()){
             word2Tokens.add(stringTokenizer.nextToken());
         }
+
+        isMarkedCorrectness = new boolean[wordsArray.size()];
     }
 
     private int countWhiteSpacesInWord(String word){
@@ -71,12 +75,42 @@ public class GameModel {
         return toReturn;
     }
 
+    protected void setCorrectness(boolean isError){
+        if(isMarkedCorrectness[currentPositionInWordsArray]){
+            return;
+        } else {
+            if(isError){
+                allAnswers++;
+                isMarkedCorrectness[currentPositionInWordsArray] = true;
+            } else {
+                allAnswers++;
+                goodAnswers++;
+                isMarkedCorrectness[currentPositionInWordsArray] = true;
+            }
+        }
+    }
+
+    protected double getCorrectness(){
+        //ERROR HERE
+        return (goodAnswers * 100) / allAnswers;
+    }
+
     protected String getCurrentWord1(){
         return wordsArray.get(currentPositionInWordsArray).getWord1();
     }
 
-    protected int getCurrentNumberOfSpaces(){
-        return wordsArray.get(currentPositionInWordsArray).getSpacesInWord2() + 1;
+    protected String getCurrentWord2(){
+        String toReturn = "";
+
+        for(int i = 0; i < word2Tokens.size(); i++){
+            if(i + 1 < word2Tokens.size()) {
+                toReturn += word2Tokens.get(i) + " ";
+            } else {
+                toReturn += word2Tokens.get(i);
+            }
+        }
+
+        return toReturn;
     }
 
     protected void takeAnotherWords() throws IndexOutOfBoundsException{

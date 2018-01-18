@@ -93,7 +93,7 @@ public class GameView extends AppCompatActivity {
                     }
 
                     public void afterTextChanged(Editable s) {
-                        //currentText.setBackgroundResource(R.drawable.edit_text_standard);
+                        currentEditText.setBackgroundResource(R.drawable.edit_text_standard);
                     }
                 });
             }
@@ -115,19 +115,20 @@ public class GameView extends AppCompatActivity {
                 }
 
                 public void afterTextChanged(Editable s) {
-                    //currentEditText.setBackgroundResource(R.drawable.edit_text_standard);
+                    currentEditText.setBackgroundResource(R.drawable.edit_text_standard);
                 }
             });
             lastElement++;
         }
         //LAST ELEMENT
-        viewArray.get(lastRow).get(lastElement).addTextChangedListener(new TextWatcher() {
+        final EditText tempCurrentEditText = viewArray.get(lastRow).get(lastElement);
+        tempCurrentEditText.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             public void afterTextChanged(Editable editable) {
-                //set background
+                tempCurrentEditText.setBackgroundResource(R.drawable.edit_text_standard);
             }
         });
     }
@@ -154,7 +155,7 @@ public class GameView extends AppCompatActivity {
         EditText toReturn = new EditText(this);
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        toReturn.setLayoutParams(params);
+        params.setMargins(4,4,4,4);
 
         toReturn.setEms(1);
         toReturn.setGravity(Gravity.CENTER);
@@ -162,26 +163,63 @@ public class GameView extends AppCompatActivity {
         toReturn.setInputType(InputType.TYPE_CLASS_TEXT);
         toReturn.setTextSize(30);
         toReturn.setSelectAllOnFocus(true);
+        toReturn.setBackgroundResource(R.drawable.edit_text_standard);
+
+        toReturn.setLayoutParams(params);
 
         return toReturn;
     }
 
     public void checkWords_But(View view) {
-        String temp = "";
+        gModel.setCorrectness(checkAndColorEditTexts());
+    }
+
+    private String getTextFromEditTexts(){
+        String toReturn = "";
         for(int i = 0; i < viewArray.size(); i++){
             for(int j = 0; j < viewArray.get(i).size(); j++){
-                temp += viewArray.get(i).get(j).getText();
+                toReturn += viewArray.get(i).get(j).getText();
             }
-            temp += " ";
+            toReturn += " ";
         }
-        toastMessage(temp);
+        return toReturn;
+    }
+
+    private boolean checkAndColorEditTexts(){
+        String proper = gModel.getCurrentWord2();
+        boolean hasError = false;
+        int currentPositionInProper = 0;
+
+        for(int i = 0; i < viewArray.size(); i++){
+            for(int j = 0; j < viewArray.get(i).size(); j++){
+                //ERROR SECURITY
+                if(viewArray.get(i).get(j).getText().toString().equals(""))
+                    viewArray.get(i).get(j).setText(" ");
+
+                char currentCharFromEditText = viewArray.get(i).get(j).getText().toString().charAt(0);
+
+                if(proper.charAt(currentPositionInProper) == currentCharFromEditText) {
+                    viewArray.get(i).get(j).setBackgroundResource(R.drawable.edit_text_green);
+                } else {
+                    viewArray.get(i).get(j).setBackgroundResource(R.drawable.edit_text_red);
+                    hasError = true;
+                }
+                currentPositionInProper++;
+            }
+            currentPositionInProper++;
+        }
+
+        return hasError;
     }
 
     public void goToNextWord_But(View view) {
+        gModel.setCorrectness(checkAndColorEditTexts());
+
         try {
             gModel.takeAnotherWords();
         } catch (IndexOutOfBoundsException e){
             //END OF WORD'S ARRAY
+            toastMessage("You scored: " + gModel.getCorrectness() + "%");
             finish();
             return;
         }
