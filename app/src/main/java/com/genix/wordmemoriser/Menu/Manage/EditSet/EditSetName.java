@@ -23,6 +23,7 @@ public class EditSetName extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.edit_set_name);
 
         Intent receivedIntent = getIntent();

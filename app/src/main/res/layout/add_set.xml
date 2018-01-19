@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/myBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,6 +28,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="Give a name for a set:"
+        android:textColor="@color/standard"
         android:textAllCaps="false"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -47,6 +48,8 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textStyle="bold"
+        android:textColor="@color/standard"
+        android:backgroundTint="@color/standard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -59,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="(No White Spaces)"
+        android:textColor="@color/standard"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="18sp"

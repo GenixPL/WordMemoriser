@@ -2,12 +2,10 @@ package com.genix.wordmemoriser.Menu.Play.Game;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.UserDictionary;
 
 import com.genix.wordmemoriser.Databases.WordsDatabase;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.StringTokenizer;
 
 /**
@@ -19,7 +17,7 @@ public class GameModel {
     private Context appContext;
     private String selectedSetName;
     private WordsDatabase wdb;
-    private ArrayList<Words> wordsArray;
+    private ArrayList<WordsForGame> wordsArray;
     protected ArrayList<String> word2Tokens;
     private int currentPositionInWordsArray;
     private int goodAnswers;
@@ -52,7 +50,7 @@ public class GameModel {
             String tempWord1 = data.getString(1);
             String tempWord2 = data.getString(2);
             int spacesInWord2 = countWhiteSpacesInWord(tempWord2);
-            wordsArray.add(new Words(tempWord1, tempWord2, spacesInWord2));
+            wordsArray.add(new WordsForGame(tempWord1, tempWord2, spacesInWord2));
         }
 
         StringTokenizer stringTokenizer = new StringTokenizer(wordsArray.get(0).getWord2());
@@ -91,8 +89,7 @@ public class GameModel {
     }
 
     protected double getCorrectness(){
-        //ERROR HERE
-        return (goodAnswers * 100) / allAnswers;
+        return (goodAnswers * 100)/ wordsArray.size();
     }
 
     protected String getCurrentWord1(){

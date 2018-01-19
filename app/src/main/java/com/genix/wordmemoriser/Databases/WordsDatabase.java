@@ -54,17 +54,6 @@ public class WordsDatabase extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getItemIdFromTable(String word1, String word2, String tableName){
-        tableName += "_table";
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String query = "SELECT " + COL_0 + " FROM " + tableName + " WHERE " + COL_1 + " = '"
-                + word1 + "' AND " + COL_2 + " = '" + word2 + "'";
-        Cursor data = db.rawQuery(query, null);
-
-        return data;
-    }
-
     public void updateWords(int id, String oldWord1, String newWord1, String oldWord2, String newWord2){
         SQLiteDatabase db = this.getWritableDatabase();
 

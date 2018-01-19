@@ -25,6 +25,7 @@ public class ManageSets extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceSate){
         super.onCreate(savedInstanceSate);
+        getSupportActionBar().hide();
         setContentView(R.layout.manage_sets);
 
         sdb = new SetsDatabase(this);

@@ -24,6 +24,7 @@ public class EditWords extends AppCompatActivity{
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.edit_words);
 
         Intent receivedIntent = getIntent();
@@ -50,10 +51,7 @@ public class EditWords extends AppCompatActivity{
         word2 = removeWhiteSpaceFromEnds(word2);
 
         if(word1.equals("") || word2.equals("")) {
-            toastMessage("You must enter both names");
-
-        } else if(hasDash(word1)){
-            toastMessage("You can't use dashes in first word yet :(");
+            toastMessage("You must fill both fields");
 
         } else {
             wdb.updateWords(selectedWordID, selectedWord1, word1, selectedWord2, word2);
@@ -64,14 +62,6 @@ public class EditWords extends AppCompatActivity{
             startActivity(editSetIntent);
             finish();
         }
-    }
-
-    private boolean hasDash(String word){
-        for (int i = 0; i < word.length(); i++)
-            if(word.charAt(i) == '-')
-                return true;
-
-        return false;
     }
 
     public void deleteWords_But(View view) {

@@ -20,6 +20,7 @@ public class DeleteSet extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.delete_set);
 
         Intent receivedIntent = getIntent();

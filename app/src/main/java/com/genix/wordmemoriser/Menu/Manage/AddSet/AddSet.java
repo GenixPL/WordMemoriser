@@ -20,6 +20,7 @@ public class AddSet extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.add_set);
 
         getName_Text = findViewById(R.id.editText);

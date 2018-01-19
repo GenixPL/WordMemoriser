@@ -24,7 +24,7 @@
 //
 //public class temp extends AppCompatActivity {
 //
-//    //private ArrayList<Words> wordsArray;
+//    //private ArrayList<WordsForAdapter> wordsArray;
 //    //private int positionOfWords;
 //    //private int goodAnswers;
 //    private ArrayList<EditText> editTextsArray;
@@ -70,7 +70,7 @@
 ////        Cursor data = wdb.getDataFromTable(selectedSetName);
 ////
 ////        while (data.moveToNext()) {
-////            wordsArray.add(new Words(data.getString(1), data.getString(2)));
+////            wordsArray.add(new WordsForAdapter(data.getString(1), data.getString(2)));
 ////        }
 ////    }
 //

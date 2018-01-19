@@ -20,6 +20,7 @@ public class AddWords extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.add_words);
 
         word1_editText = findViewById(R.id.word1_editText);
@@ -36,12 +37,12 @@ public class AddWords extends AppCompatActivity {
         String word1 = word1_editText.getText().toString();
         String word2 = word2_editText.getText().toString();
 
-        if(!word1.equals("") && !word2.equals("")) {
+        if(word1.equals("") || word2.equals("")) {
+            toastMessage("You must fill both fields");
+
+        } else {
             word1 = removeWhiteSpaceFromEnds(word1);
             word2 = removeWhiteSpaceFromEnds(word2);
-        }
-
-        if(hasProperWords(word1, word2)){
             wdb.addWords(word1, word2);
 
             Intent editSetIntent = new Intent(AddWords.this, EditSet.class);
