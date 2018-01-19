@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.DoubleListAdapter;
+package com.genix.wordmemoriser.Adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -49,7 +49,7 @@ public class DoubleListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View toReturn = View.inflate(context, R.layout.my_list_view_double_item, null);
+        View toReturn = View.inflate(context, R.layout.list_view_double_item_with_dash, null);
         TextView firstItemText = toReturn.findViewById(R.id.firstItem);
         TextView secondItemText = toReturn.findViewById(R.id.secondItem);
 

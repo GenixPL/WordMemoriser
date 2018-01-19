@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.DoubleListAdapter;
+package com.genix.wordmemoriser.Adapters;
 
 /**
  * Created by genix on 1/19/2018.

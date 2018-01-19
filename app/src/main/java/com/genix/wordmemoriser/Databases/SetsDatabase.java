@@ -49,15 +49,6 @@ public class SetsDatabase extends SQLiteOpenHelper{
         return data;
     }
 
-    public Cursor getItemId(String setName){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String query = "SELECT " + COL_0 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + setName + "'";
-        Cursor data = db.rawQuery(query, null);
-
-        return data;
-    }
-
     public void updateName(String newName, int id, String oldName){
         SQLiteDatabase db = this.getWritableDatabase();
 

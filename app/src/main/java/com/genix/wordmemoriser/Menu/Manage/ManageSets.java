@@ -11,6 +11,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
+import com.genix.wordmemoriser.Adapters.SingleListAdapter;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSet;
 import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
@@ -22,6 +24,7 @@ public class ManageSets extends AppCompatActivity{
 
     private SetsDatabase sdb;
     private ListView sets_ListView;
+    private SingleListAdapter singleAdapter;
 
     protected void onCreate(Bundle savedInstanceSate){
         super.onCreate(savedInstanceSate);
@@ -32,28 +35,20 @@ public class ManageSets extends AppCompatActivity{
         sets_ListView = findViewById(R.id.sets_listView);
 
         displayListView();
+        setOnClickListenerForListView();
+    }
 
+    private void setOnClickListenerForListView(){
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String setName = adapterView.getItemAtPosition(i).toString();
+                int id = Integer.parseInt(view.getTag().toString());
+                String setName = singleAdapter.getSetName(i).toString();
 
-                Cursor data = sdb.getItemId(setName);
-                int itemID = -1;
-
-                while(data.moveToNext()){
-                    itemID = data.getInt(0);
-                }
-
-                if(itemID > -1){
-                    Intent editSetIntent = new Intent(ManageSets.this, EditSet.class);
-                    editSetIntent.putExtra("setID", itemID);
-                    editSetIntent.putExtra("setName", setName);
-                    startActivity(editSetIntent);
-                    finish();
-
-                } else {
-                    toastMessage("No ID associated with that name");
-                }
+                Intent editSetIntent = new Intent(ManageSets.this, EditSet.class);
+                editSetIntent.putExtra("setID", id);
+                editSetIntent.putExtra("setName", setName);
+                startActivity(editSetIntent);
+                finish();
             }
         });
     }
@@ -65,14 +60,14 @@ public class ManageSets extends AppCompatActivity{
 
     private void displayListView(){
         Cursor data = sdb.getData();
-        ArrayList<String> listedData = new ArrayList<>();
+        ArrayList<SetNamesForAdapter> listedData = new ArrayList<>();
 
         while(data.moveToNext()){
-            listedData.add(data.getString(1));
+            listedData.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
         }
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listedData);
-        sets_ListView.setAdapter(adapter);
+        singleAdapter = new SingleListAdapter(this, listedData);
+        sets_ListView.setAdapter(singleAdapter);
     }
 
     private void toastMessage(String message){

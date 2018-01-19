@@ -13,6 +13,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
+import com.genix.wordmemoriser.Adapters.SingleListAdapter;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Menu.Play.Game.GameView;
 import com.genix.wordmemoriser.R;
@@ -23,6 +25,7 @@ public class Play extends AppCompatActivity{
 
     private SetsDatabase sdb;
     private ListView sets_ListView;
+    private SingleListAdapter singleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,40 +37,34 @@ public class Play extends AppCompatActivity{
         sdb = new SetsDatabase(this);
 
         displayListView();
+        setOnItemClickListenerForLstView();
+    }
 
+    private void setOnItemClickListenerForLstView(){
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String setName = adapterView.getItemAtPosition(i).toString();
+                int id = Integer.parseInt(view.getTag().toString());
+                String setName = singleAdapter.getSetName(i).toString();
 
-                Cursor data = sdb.getItemId(setName);
-                int itemID = -1;
+                Intent editSetIntent = new Intent(Play.this, GameView.class);
+                editSetIntent.putExtra("id", id);
+                editSetIntent.putExtra("setName", setName);
+                startActivity(editSetIntent);
 
-                while(data.moveToNext()){
-                    itemID = data.getInt(0);
-                }
-
-                if(itemID > -1){
-                    Intent editSetIntent = new Intent(Play.this, GameView.class);
-                    editSetIntent.putExtra("id", itemID);
-                    editSetIntent.putExtra("setName", setName);
-                    startActivity(editSetIntent);
-                } else {
-                    toastMessage("No ID associated with that name");
-                }
             }
         });
     }
 
     private void displayListView(){
         Cursor data = sdb.getData();
-        ArrayList<String> dataToList = new ArrayList<>(0);
+        ArrayList<SetNamesForAdapter> dataToList = new ArrayList<>(0);
 
         while(data.moveToNext()){
-            dataToList.add(data.getString(1)); // 1 - first column (not 0)
+            dataToList.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
         }
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataToList);
-        sets_ListView.setAdapter(adapter);
+        singleAdapter = new SingleListAdapter(this, dataToList);
+        sets_ListView.setAdapter(singleAdapter);
     }
 
     private void toastMessage(String message){
