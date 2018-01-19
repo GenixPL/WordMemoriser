@@ -5,16 +5,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
-import com.genix.wordmemoriser.Adapters.SingleListAdapter;
+import com.genix.wordmemoriser.Adapters.SetNamesListAdapter;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Menu.Play.Game.GameView;
 import com.genix.wordmemoriser.R;
@@ -25,7 +21,7 @@ public class Play extends AppCompatActivity{
 
     private SetsDatabase sdb;
     private ListView sets_ListView;
-    private SingleListAdapter singleAdapter;
+    private SetNamesListAdapter singleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +59,7 @@ public class Play extends AppCompatActivity{
             dataToList.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
         }
 
-        singleAdapter = new SingleListAdapter(this, dataToList);
+        singleAdapter = new SetNamesListAdapter(this, dataToList);
         sets_ListView.setAdapter(singleAdapter);
     }
 

@@ -14,12 +14,12 @@ import java.util.ArrayList;
  * Created by genix on 1/19/2018.
  */
 
-public class DoubleListAdapter extends BaseAdapter {
+public class WordsListAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<WordsForAdapter> wordsArray;
 
-    public DoubleListAdapter(Context context, ArrayList<WordsForAdapter> wordsArray) {
+    public WordsListAdapter(Context context, ArrayList<WordsForAdapter> wordsArray) {
         this.context = context;
         this.wordsArray = wordsArray;
     }
@@ -49,7 +49,7 @@ public class DoubleListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View toReturn = View.inflate(context, R.layout.list_view_double_item_with_dash, null);
+        View toReturn = View.inflate(context, R.layout.list_view_words, null);
         TextView firstItemText = toReturn.findViewById(R.id.firstItem);
         TextView secondItemText = toReturn.findViewById(R.id.secondItem);
 

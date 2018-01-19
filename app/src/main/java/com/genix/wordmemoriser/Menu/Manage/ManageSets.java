@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
-import com.genix.wordmemoriser.Adapters.SingleListAdapter;
+import com.genix.wordmemoriser.Adapters.SetNamesListAdapter;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Menu.Manage.AddSet.AddSet;
 import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
@@ -24,7 +22,7 @@ public class ManageSets extends AppCompatActivity{
 
     private SetsDatabase sdb;
     private ListView sets_ListView;
-    private SingleListAdapter singleAdapter;
+    private SetNamesListAdapter singleAdapter;
 
     protected void onCreate(Bundle savedInstanceSate){
         super.onCreate(savedInstanceSate);
@@ -66,7 +64,7 @@ public class ManageSets extends AppCompatActivity{
             listedData.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
         }
 
-        singleAdapter = new SingleListAdapter(this, listedData);
+        singleAdapter = new SetNamesListAdapter(this, listedData);
         sets_ListView.setAdapter(singleAdapter);
     }
 

@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Adapters.DoubleListAdapter;
+import com.genix.wordmemoriser.Adapters.WordsListAdapter;
 import com.genix.wordmemoriser.Adapters.WordsForAdapter;
 import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.AddWords;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
@@ -28,7 +28,7 @@ public class EditSet extends AppCompatActivity{
     private int selectedSetID;
     private TextView setName_Text;
     private ListView words_ListView;
-    private DoubleListAdapter mListAdapter;
+    private WordsListAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class EditSet extends AppCompatActivity{
             listedData.add(new WordsForAdapter(data.getInt(0), data.getString(1), data.getString(2)));
         }
 
-        mListAdapter = new DoubleListAdapter(this, listedData);
+        mListAdapter = new WordsListAdapter(this, listedData);
         words_ListView.setAdapter(mListAdapter);
     }
 

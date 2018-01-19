@@ -14,12 +14,12 @@ import java.util.ArrayList;
  * Created by genix on 1/19/2018.
  */
 
-public class SingleListAdapter extends BaseAdapter {
+public class SetNamesListAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<SetNamesForAdapter> setNamesArray;
 
-    public SingleListAdapter(Context context, ArrayList<SetNamesForAdapter> setNamesArray) {
+    public SetNamesListAdapter(Context context, ArrayList<SetNamesForAdapter> setNamesArray) {
         this.context = context;
         this.setNamesArray = setNamesArray;
     }
@@ -45,7 +45,7 @@ public class SingleListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View toReturn = View.inflate(context, R.layout.list_view_single_item, null);
+        View toReturn = View.inflate(context, R.layout.list_view_set_names, null);
         TextView singleItem = toReturn.findViewById(R.id.singleItem);
 
         singleItem.setText(setNamesArray.get(i).getSetName());
