@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Menu.MainMenu"
+            android:name=".Activities.MainMenu"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,43 +20,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Menu.Manage.ManageSets"
+            android:name=".Activities.Manage.ManageSets"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.AddSet.AddSet"
+            android:name=".Activities.Manage.AddSet.AddSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.EditSet"
+            android:name=".Activities.Manage.EditSet.EditSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.Words.EditWords"
+            android:name=".Activities.Manage.EditSet.Words.EditWords"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.Words.AddWords"
+            android:name=".Activities.Manage.EditSet.Words.AddWords"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Play.Play"
+            android:name=".Activities.Play.Play"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Play.Game.GameView"
+            android:name=".Activities.Play.Game.GameView"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Settings.Settings"
+            android:name=".Activities.Settings.Settings"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.EditSetName"
+            android:name=".Activities.Manage.EditSet.EditSetName"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Menu.Manage.EditSet.DeleteSet"
+            android:name=".Activities.Manage.EditSet.DeleteSet"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

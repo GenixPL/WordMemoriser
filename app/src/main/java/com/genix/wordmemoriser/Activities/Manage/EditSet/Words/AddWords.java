@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Manage.EditSet.Words;
+package com.genix.wordmemoriser.Activities.Manage.EditSet.Words;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.EditSet;
+import com.genix.wordmemoriser.Activities.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
 public class AddWords extends AppCompatActivity {

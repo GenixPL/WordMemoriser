@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Settings;
+package com.genix.wordmemoriser.Activities.Settings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

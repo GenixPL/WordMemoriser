@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Play.Game;
+package com.genix.wordmemoriser.Activities.Play.Game;
 
 public class WordsForGame {
 

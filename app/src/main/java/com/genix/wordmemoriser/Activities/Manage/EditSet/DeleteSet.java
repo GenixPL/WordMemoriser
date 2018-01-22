@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Manage.EditSet;
+package com.genix.wordmemoriser.Activities.Manage.EditSet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.ManageSets;
+import com.genix.wordmemoriser.Activities.Manage.ManageSets;
 import com.genix.wordmemoriser.R;
 
 public class DeleteSet extends AppCompatActivity {

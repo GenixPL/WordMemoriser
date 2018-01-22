@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Manage.EditSet;
+package com.genix.wordmemoriser.Activities.Manage.EditSet;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import com.genix.wordmemoriser.Adapters.WordsListAdapter;
 import com.genix.wordmemoriser.Adapters.WordsForAdapter;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.AddWords;
+import com.genix.wordmemoriser.Activities.Manage.EditSet.Words.AddWords;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
 import com.genix.wordmemoriser.Databases.WordsDatabase;
-import com.genix.wordmemoriser.Menu.Manage.EditSet.Words.EditWords;
+import com.genix.wordmemoriser.Activities.Manage.EditSet.Words.EditWords;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;

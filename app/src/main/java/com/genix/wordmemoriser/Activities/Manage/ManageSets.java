@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Play;
+package com.genix.wordmemoriser.Activities.Manage;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,54 +12,59 @@ import android.widget.Toast;
 import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
 import com.genix.wordmemoriser.Adapters.SetNamesListAdapter;
 import com.genix.wordmemoriser.Databases.SetsDatabase;
-import com.genix.wordmemoriser.Menu.Play.Game.GameView;
+import com.genix.wordmemoriser.Activities.Manage.AddSet.AddSet;
+import com.genix.wordmemoriser.Activities.Manage.EditSet.EditSet;
 import com.genix.wordmemoriser.R;
 
 import java.util.ArrayList;
 
-public class Play extends AppCompatActivity{
+public class ManageSets extends AppCompatActivity{
 
     private SetsDatabase sdb;
     private ListView sets_ListView;
     private SetNamesListAdapter singleAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceSate){
+        super.onCreate(savedInstanceSate);
         getSupportActionBar().hide();
-        setContentView(R.layout.play);
+        setContentView(R.layout.manage_sets);
 
-        sets_ListView = findViewById(R.id.sets_listView);
         sdb = new SetsDatabase(this);
+        sets_ListView = findViewById(R.id.sets_listView);
 
         displayListView();
-        setOnItemClickListenerForLstView();
+        setOnClickListenerForListView();
     }
 
-    private void setOnItemClickListenerForLstView(){
+    private void setOnClickListenerForListView(){
         sets_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int id = Integer.parseInt(view.getTag().toString());
                 String setName = singleAdapter.getSetName(i).toString();
 
-                Intent editSetIntent = new Intent(Play.this, GameView.class);
-                editSetIntent.putExtra("id", id);
+                Intent editSetIntent = new Intent(ManageSets.this, EditSet.class);
+                editSetIntent.putExtra("setID", id);
                 editSetIntent.putExtra("setName", setName);
                 startActivity(editSetIntent);
-
+                finish();
             }
         });
     }
 
+    public void goToAddSet_But(View view){
+        startActivity(new Intent(this, AddSet.class));
+        finish();
+    }
+
     private void displayListView(){
         Cursor data = sdb.getData();
-        ArrayList<SetNamesForAdapter> dataToList = new ArrayList<>(0);
+        ArrayList<SetNamesForAdapter> listedData = new ArrayList<>();
 
         while(data.moveToNext()){
-            dataToList.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
+            listedData.add(new SetNamesForAdapter(data.getString(1), data.getInt(0)));
         }
 
-        singleAdapter = new SetNamesListAdapter(this, dataToList);
+        singleAdapter = new SetNamesListAdapter(this, listedData);
         sets_ListView.setAdapter(singleAdapter);
     }
 

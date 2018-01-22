@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/myBackground"
-    tools:context="com.genix.wordmemoriser.Menu.MainMenu">
+    tools:context="com.genix.wordmemoriser.Activities.MainMenu">
 
 
     <Button

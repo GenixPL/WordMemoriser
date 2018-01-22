@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu;
+package com.genix.wordmemoriser.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.genix.wordmemoriser.Menu.Manage.ManageSets;
-import com.genix.wordmemoriser.Menu.Play.Play;
+import com.genix.wordmemoriser.Activities.Manage.ManageSets;
+import com.genix.wordmemoriser.Activities.Play.Play;
 import com.genix.wordmemoriser.R;
 
 public class MainMenu extends AppCompatActivity {

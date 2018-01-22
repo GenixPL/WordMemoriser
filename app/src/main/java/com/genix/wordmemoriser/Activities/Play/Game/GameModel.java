@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Play.Game;
+package com.genix.wordmemoriser.Activities.Play.Game;
 
 import android.content.Context;
 import android.database.Cursor;

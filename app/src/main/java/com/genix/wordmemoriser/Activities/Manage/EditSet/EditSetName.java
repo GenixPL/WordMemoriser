@@ -1,4 +1,4 @@
-package com.genix.wordmemoriser.Menu.Manage.EditSet;
+package com.genix.wordmemoriser.Activities.Manage.EditSet;
 
 import android.content.Intent;
 import android.os.Bundle;
