@@ -36,6 +36,7 @@ public class GameView extends AppCompatActivity {
     private TextView word1_textView;
     private LinearLayout vertical_linearLayout;
     private ArrayList<ArrayList<EditText>> viewArray;
+    private boolean isHintAvaible;
 
 
     @Override
@@ -237,4 +238,16 @@ public class GameView extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    public void hint_But(View view) {
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+
+        }
+        toastMessage("after sleep");
+
+    }
+
 }
