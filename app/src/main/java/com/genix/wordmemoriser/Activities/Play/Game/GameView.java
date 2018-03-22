@@ -36,7 +36,6 @@ public class GameView extends AppCompatActivity {
     private TextView word1_textView;
     private LinearLayout vertical_linearLayout;
     private ArrayList<ArrayList<EditText>> viewArray;
-    private boolean isHintAvaible;
 
 
     @Override
@@ -241,13 +240,9 @@ public class GameView extends AppCompatActivity {
 
     public void hint_But(View view) {
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e){
-
-        }
-        toastMessage("after sleep");
-
+           int positionY = (int) (Math.random() * viewArray.size());
+           int positionX = (int) (Math.random() * viewArray.get(positionY).size());
+           toastMessage(positionX + "");
     }
 
 }

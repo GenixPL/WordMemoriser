@@ -3,6 +3,7 @@ package com.genix.wordmemoriser.Activities.Play.Game;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.genix.wordmemoriser.Activities.Play.Play;
 import com.genix.wordmemoriser.Databases.WordsDatabase;
 
 import java.util.ArrayList;
@@ -47,8 +48,17 @@ public class GameModel {
         Cursor data = wdb.getDataFromTable(selectedSetName);
 
         while (data.moveToNext()) {
-            String tempWord1 = data.getString(1);
-            String tempWord2 = data.getString(2);
+            String tempWord1;
+            String tempWord2;
+
+            if(Play.switchedWords){
+                tempWord1 = data.getString(2);
+                tempWord2 = data.getString(1);
+            } else {
+                tempWord1 = data.getString(1);
+                tempWord2 = data.getString(2);
+            }
+
             int spacesInWord2 = countWhiteSpacesInWord(tempWord2);
             wordsArray.add(new WordsForGame(tempWord1, tempWord2, spacesInWord2));
         }

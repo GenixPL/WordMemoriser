@@ -22,6 +22,7 @@ public class Play extends AppCompatActivity{
     private SetsDatabase sdb;
     private ListView sets_ListView;
     private SetNamesListAdapter singleAdapter;
+    public static boolean switchedWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class Play extends AppCompatActivity{
 
         displayListView();
         setOnItemClickListenerForLstView();
+        switchedWords = false;
     }
 
     private void setOnItemClickListenerForLstView(){
@@ -61,6 +63,10 @@ public class Play extends AppCompatActivity{
 
         singleAdapter = new SetNamesListAdapter(this, dataToList);
         sets_ListView.setAdapter(singleAdapter);
+    }
+
+    public void SwitchWords_But(View view){
+        switchedWords = true;
     }
 
     private void toastMessage(String message){
