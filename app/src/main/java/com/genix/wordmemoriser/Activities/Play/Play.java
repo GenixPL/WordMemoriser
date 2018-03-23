@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.genix.wordmemoriser.Adapters.SetNamesForAdapter;
 import com.genix.wordmemoriser.Adapters.SetNamesListAdapter;
@@ -35,6 +36,11 @@ public class Play extends AppCompatActivity{
 
         displayListView();
         setOnItemClickListenerForLstView();
+
+        ToggleButton button = findViewById(R.id.switchWords_but);
+        button.setText("Switch words");
+        button.setTextOff("Switch words");
+        button.setTextOn("Words switched");
         switchedWords = false;
     }
 
@@ -66,7 +72,7 @@ public class Play extends AppCompatActivity{
     }
 
     public void SwitchWords_But(View view){
-        switchedWords = true;
+        switchedWords = !switchedWords;
     }
 
     private void toastMessage(String message){

@@ -238,6 +238,7 @@ public class GameView extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    //WORK IN PROGRESS
     public void hint_But(View view) {
 
            int positionY = (int) (Math.random() * viewArray.size());
